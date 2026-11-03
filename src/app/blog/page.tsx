@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { 
   Sun, 
@@ -10,9 +10,12 @@ import {
   Clock, 
   Camera 
 } from "lucide-react";
+import { getWordPressPosts, type WordPressPost } from "@/lib/wordpress";
 
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState("전체보기 (All)");
+  const [wpPosts, setWpPosts] = useState<WordPressPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const categories = [
     "전체보기 (All)",
@@ -22,56 +25,51 @@ export default function BlogPage() {
     "Cafe Life",
   ];
 
-  const articles = [
+  // 기본 시안 샘플 글 목록 (워드프레스 글이 아직 적을 때 함께 조화롭게 표출)
+  const fallbackArticles = [
     {
-      id: 1,
+      id: 991,
       category: "Terrace Notes",
-      badgeColor: "bg-[#4A5D4E] text-white",
       date: "2025.05.14",
       title: "테라스 식물 가꾸기: 조뷸러의 올리브나무와 레몬트리",
       desc: "햇빛과 바람이 풍부한 벽돌 안뜰에서 건강하게 자라는 은빛 올리브 잎과 꽃망울을 맺은 레몬 나무들의 초여름 이야기.",
       img: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80",
     },
     {
-      id: 2,
+      id: 992,
       category: "Coffee & Tea",
-      badgeColor: "bg-[#7A5638] text-white",
       date: "2025.05.08",
       title: "이번 달의 싱글 오리진 필터 커피 이야기",
       desc: "에티오피아 예가체프 게뎁 워시드의 재스민 향과 복숭아 산미, 그리고 테라스에서 마실 때 가장 극대화되는 향미.",
       img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
     },
     {
-      id: 3,
+      id: 993,
       category: "Cafe Life",
-      badgeColor: "bg-[#645853] text-white",
       date: "2025.04.29",
       title: "반려견과 함께 방문하시는 분들을 위한 파티오 이용 안내",
       desc: "모두가 편안한 테라스 시간을 위해 준비된 전용 음수대, 리드줄 고리 벤치와 조뷸러의 펫 프렌들리 가이드라인.",
       img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80",
     },
     {
-      id: 4,
+      id: 994,
       category: "Terrace Notes",
-      badgeColor: "bg-[#4A5D4E] text-white",
       date: "2025.04.18",
       title: "비 오는 날의 조뷸러, 안뜰 처마 밑의 운치",
       desc: "차양에 부딪히는 빗소리와 젖은 흙내음, 쌀쌀한 날씨에 어울리는 따뜻한 시나몬 플랫화이트와 함께 머무는 고요한 오후.",
       img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
     },
     {
-      id: 5,
+      id: 995,
       category: "Coffee & Tea",
-      badgeColor: "bg-[#7A5638] text-white",
       date: "2025.04.02",
       title: "원두 로스팅 프로파일: 산뜻함과 묵직함의 균형",
       desc: "조뷸러의 시그니처 하우스 블렌드가 탄생하기까지의 로스팅 데이터와 햇살 아래 가장 편안하게 음미할 수 있는 추출 비율.",
       img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80",
     },
     {
-      id: 6,
+      id: 996,
       category: "Season Special",
-      badgeColor: "bg-[#9B4A25] text-white",
       date: "2025.03.24",
       title: "봄날의 버터 풍미: 수제 피낭시에와 허브티 페어링",
       desc: "헤이즐넛 버터의 깊은 풍미를 끌어올린 세 가지 구움과자와 유기농 카모마일 블렌드의 조화로운 오후 티타임.",
@@ -79,9 +77,55 @@ export default function BlogPage() {
     },
   ];
 
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const posts = await getWordPressPosts();
+        setWpPosts(posts);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPosts();
+  }, []);
+
+  // 워드프레스 실시간 글 + 기존 글 병합 (워드프레스 최신 글이 최우선)
+  const convertedWpArticles = wpPosts.map((wp) => ({
+    id: wp.id,
+    category: wp.category,
+    date: wp.date,
+    title: wp.title,
+    desc: wp.excerpt || "조뷸러의 새로운 소식입니다.",
+    img: wp.featuredImage,
+    author: wp.authorName,
+    isWordPress: true,
+  }));
+
+  // 전체 글 (워드프레스 글 우선)
+  const allArticles = [...convertedWpArticles, ...fallbackArticles];
+
+  // 추천 메인 스토리 (워드프레스 최신 글이 있으면 그것으로, 없으면 기본 스토리)
+  const featuredArticle = convertedWpArticles.length > 0
+    ? convertedWpArticles[0]
+    : {
+        id: 990,
+        title: "초여름 테라스에 어울리는 새로운 시트러스 에이드와 레몬 타르트",
+        category: "Season Special",
+        date: "2025.05.20",
+        desc: "따사로운 햇살이 파티오 붉은 벽돌과 목재 테이블 위로 길게 드리우는 5월 하순, 안뜰에 만개한 레몬트리의 향취를 담아 상큼한 유자청과 카라카라 오렌지를 블렌딩한 시그니처 음료를 소개합니다.",
+        img: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=80",
+        author: "Barista Min & Roaster",
+      };
+
+  // 그리드에 보여줄 글 (추천 스토리를 제외한 나머지)
+  const gridArticles = allArticles.filter(a => a.id !== featuredArticle.id);
+
+  // 카테고리 필터링
   const filteredArticles = activeCategory === "전체보기 (All)"
-    ? articles
-    : articles.filter(a => a.category === activeCategory);
+    ? gridArticles
+    : gridArticles.filter(a => a.category.toLowerCase().includes(activeCategory.toLowerCase().replace(/[^a-zA-Z]/g, '')));
 
   return (
     <>
@@ -142,8 +186,8 @@ export default function BlogPage() {
             {/* Left Image */}
             <div className="md:col-span-7 relative min-h-[300px] sm:min-h-[380px] bg-[#EFE8DF]">
               <img
-                src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=80"
-                alt="초여름 테라스와 시트러스 에이드"
+                src={featuredArticle.img}
+                alt={featuredArticle.title}
                 className="h-full w-full object-cover"
               />
               <div className="absolute top-4 left-4 flex gap-2">
@@ -151,7 +195,7 @@ export default function BlogPage() {
                   Featured Story
                 </span>
                 <span className="rounded-full bg-[#E5A83E] px-3 py-1 text-[11px] font-medium text-white shadow-sm">
-                  Season Special
+                  {featuredArticle.category}
                 </span>
               </div>
             </div>
@@ -161,15 +205,15 @@ export default function BlogPage() {
               <div>
                 <div className="flex items-center gap-2 text-xs text-[#8C8075]">
                   <Calendar className="h-3.5 w-3.5 text-[#9B4A25]" />
-                  <span>2025.05.20</span>
+                  <span>{featuredArticle.date}</span>
                   <span>•</span>
                   <span>5 min read</span>
                 </div>
                 <h2 className="mt-4 text-xl sm:text-2xl font-serif font-bold text-[#2D2522] leading-snug">
-                  초여름 테라스에 어울리는 새로운 시트러스 에이드와 레몬 타르트
+                  {featuredArticle.title}
                 </h2>
                 <p className="mt-4 text-xs sm:text-sm text-[#736860] leading-relaxed line-clamp-4">
-                  따사로운 햇살이 파티오 붉은 벽돌과 목재 테이블 위로 길게 드리우는 5월 하순, 안뜰에 만개한 레몬트리의 향취를 담아 상큼한 유자청과 카라카라 오렌지를 블렌딩한 시그니처 음료를 소개합니다.
+                  {featuredArticle.desc}
                 </p>
               </div>
 
@@ -179,7 +223,7 @@ export default function BlogPage() {
                     JV
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-[#2D2522]">Barista Min & Roaster</p>
+                    <p className="text-xs font-semibold text-[#2D2522]">{featuredArticle.author || "Jovular Barista"}</p>
                     <p className="text-[10px] text-[#8C8075]">Jovular Courtyard</p>
                   </div>
                 </div>
