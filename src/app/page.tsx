@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { 
   Sun, 
@@ -37,28 +39,28 @@ export default function Home() {
     {
       title: "너티초콜릿크림라떼",
       subtitle: "Nutty Chocolate Cream Latte",
-      price: "₩ 6,800",
+      price: "₩ 8,900",
       desc: "고소한 견과류의 풍미와 진한 다크 초콜릿, 부드러운 수제 생크림이 조화를 이루는 시그니처 라떼",
       tags: "Signature • Cream Coffee",
     },
     {
       title: "레몬버터크림라떼",
       subtitle: "Lemon Butter Cream Latte",
-      price: "₩ 6,800",
+      price: "₩ 8,900",
       desc: "싱그러운 레몬 향과 고소한 버터스카치 풍미의 크림이 에스프레소와 어우러진 조블라 대표 음료",
       tags: "Signature • Sweet & Citrus",
     },
     {
       title: "애플 고르곤졸라 치즈케이크",
       subtitle: "Apple Gorgonzola Cheesecake",
-      price: "₩ 7,500",
+      price: "₩ 13,900",
       desc: "깊은 풍미의 고르곤졸라 치즈에 향긋하고 달콤한 사과 콩포트를 더한 프리미엄 수제 케이크",
       tags: "Dessert • House Special",
     },
     {
       title: "바스크치즈케이크",
       subtitle: "Basque Burnt Cheesecake",
-      price: "₩ 7,000",
+      price: "₩ 11,900",
       desc: "고온에서 구워내 스모키한 캐러멜 향과 부드럽고 촉촉한 텍스처를 극대화한 클래식 바스크",
       tags: "Dessert • Daily Baked",
     },
