@@ -17,8 +17,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "jovular • MOOD & COFFEE",
-  description: "Live in a Jovular Mood - 햇살 가득한 테라스와 향긋한 커피, 유럽의 작은 안뜰에서 누리는 여유로운 시간",
+  title: "조블라 | Cafe Jovular - 테라스 카페",
+  description: "홍대 와우산로 골목 안쪽에 위치한 프라이빗 테라스 카페 조블라(Jovular). 시그니처 크림라떼와 수제 디저트.",
 };
 
 export default function RootLayout({

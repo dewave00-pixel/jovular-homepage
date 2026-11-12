@@ -46,13 +46,13 @@ export default function LocationPage() {
             <div>
               <div className="inline-flex items-center gap-1.5 rounded-full bg-[#ECE4D8] px-3.5 py-1 text-[11px] font-semibold tracking-wider text-[#685E55] uppercase">
                 <Sun className="h-3 w-3 text-[#9B4A25]" />
-                COURTYARD • SUNLIT PATIO • SEOUL
+                LOCATION & VISITING GUIDE
               </div>
               <h1 className="mt-4 text-4xl sm:text-5xl font-serif text-[#2D2522]">
                 Visit Jovular
               </h1>
               <p className="mt-3 text-xs sm:text-sm text-[#736860]">
-                햇살 가득한 조블라의 테라스로 당신을 초대합니다
+                홍대 와우산로 골목 안쪽에 위치한 테라스 카페 조블라 오시는 길입니다.
               </p>
             </div>
 
@@ -64,10 +64,10 @@ export default function LocationPage() {
               </span>
               <div>
                 <p className="text-xs font-semibold text-[#2D2522]">
-                  현재 야외 테라스 운영 중
+                  야외 테라스 & 실내 라운지 운영 중
                 </p>
                 <p className="text-[10px] text-[#8C8075]">
-                  햇살 좋은 남향 코트야드 좌석
+                  편안한 테라스 좌석 이용 가능
                 </p>
               </div>
             </div>
@@ -83,18 +83,18 @@ export default function LocationPage() {
             <div className="lg:col-span-8 relative rounded-3xl overflow-hidden min-h-[340px] sm:min-h-[420px] shadow-md border border-[#ECE5DC]">
               <img
                 src="/images/terrace_01.jpg"
-                alt="따스한 햇살과 허브 향이 머무는 조블라 정원"
+                alt="조블라 야외 테라스 전경"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
                 <span className="text-[10px] font-bold tracking-widest text-[#E5A83E] uppercase mb-1.5">
-                  THE OUTDOOR TERRACE
+                  THE TERRACE
                 </span>
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-white leading-snug">
-                  따스한 햇살과 허브 향이 머무는 조블라 정원
+                  도심 속 프라이빗 야외 테라스
                 </h3>
                 <p className="mt-2 text-xs sm:text-sm text-stone-200 max-w-xl leading-relaxed">
-                  붉은 벽돌 벤치와 내추럴한 원목 테이블이 만들어내는 이국적인 야외테라스 공간입니다.
+                  골목 안쪽 붉은 벽돌과 감각적인 테이블이 마련된 조블라의 대표 테라스 공간입니다.
                 </p>
               </div>
             </div>
@@ -107,21 +107,21 @@ export default function LocationPage() {
                     <Coffee className="h-4 w-4" />
                   </div>
                   <span className="rounded-full bg-[#EFE8DF] px-3 py-1 text-[11px] font-medium text-[#736860]">
-                    Courtyard & Coffee
+                    Terrace & Coffee
                   </span>
                 </div>
 
                 <h3 className="mt-6 text-xl font-serif font-bold text-[#2D2522]">
-                  자연스러운 쉼이 있는 곳
+                  조블라 공간 소개
                 </h3>
                 <p className="mt-3 text-xs leading-relaxed text-[#736860]">
-                  프렌치풍 크림 트렐리스와 싱그러운 레몬 장식이 반겨주는 공간. 안뜰 테라스에서 따뜻한 커피 한 잔의 여유를 즐겨보세요.
+                  도심 골목 안쪽 한적한 야외 테라스와 아늑한 실내 라운지에서 커피와 디저트를 편안하게 즐기실 수 있습니다.
                 </p>
               </div>
 
               <div className="pt-6 border-t border-[#ECE5DC] mt-6 flex items-center gap-1.5 text-[10px] font-mono tracking-wider text-[#8C8075] uppercase">
                 <span>✦</span>
-                <span>Seoul Courtyard Roastery Mood</span>
+                <span>Cafe Jovular Seoul</span>
               </div>
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function LocationPage() {
                       서울 마포구 와우산로 29마길 (조블라 Jovular)
                     </p>
                     <p className="text-xs text-[#8C8075] mt-1">
-                      햇살이 들어오는 골목 안쪽, 유럽풍 벽돌 테라스와 아이보리 철제 게이트
+                      홍대입구역/산울림소극장 인근 골목 안쪽, 붉은 벽돌 테라스 입구로 들어오시면 됩니다.
                     </p>
                   </div>
                   <button
@@ -377,7 +377,7 @@ export default function LocationPage() {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-[#736860] max-w-md leading-relaxed">
-              모든 고객님이 평화롭고 쾌적한 시간을 보낼 수 있도록 세 가지 약속을 지켜주세요.
+              방문해 주시는 모든 분들이 편안한 시간을 보내실 수 있도록 안내사항을 확인해 주세요.
             </p>
           </div>
 
@@ -389,10 +389,10 @@ export default function LocationPage() {
                   <Coffee className="h-4 w-4" />
                 </div>
                 <h3 className="mt-4 font-serif text-base font-bold text-[#2D2522]">
-                  01. 쾌적한 휴식 에티켓
+                  01. 쾌적한 공간 이용
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-[#736860]">
-                  모두를 위한 고요하고 편안한 안식처를 위해 큰 소리의 대화나 통화는 자제해 주시고, 서로를 배려하는 따뜻한 매너를 부탁드립니다.
+                  다른 손님들의 편안한 휴식을 위해 지나치게 큰 소리의 대화나 스피커폰 통화는 배려를 부탁드립니다.
                 </p>
               </div>
             </div>
@@ -404,10 +404,10 @@ export default function LocationPage() {
                   <Umbrella className="h-4 w-4" />
                 </div>
                 <h3 className="mt-4 font-serif text-base font-bold text-[#2D2522]">
-                  02. 우천 & 강풍 시 실내 이용
+                  02. 우천 및 강풍 시 안내
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-[#736860]">
-                  비가 내리거나 바람이 강한 날에는 테라스 좌석 이용이 제한되며, 따뜻한 조명의 실내 테이블 자리로 편안하게 안내해 드립니다.
+                  비가 오거나 바람이 많이 부는 날에는 안전을 위해 야외 테라스 이용이 제한되며 실내 좌석으로 안내해 드립니다.
                 </p>
               </div>
             </div>
@@ -419,10 +419,10 @@ export default function LocationPage() {
                   <Camera className="h-4 w-4" />
                 </div>
                 <h3 className="mt-4 font-serif text-base font-bold text-[#2D2522]">
-                  03. 상업적 촬영 사전 문의
+                  03. 상업 촬영 사전 문의
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-[#736860]">
-                  마켓, 룩북, 유튜브 등 상업용 목적의 카메라 촬영은 다른 방문객의 휴식을 위해 영업 전 사전 대관 문의 후 진행이 가능합니다.
+                  쇼핑몰 룩북, 상업적 영상 촬영 등은 일반 이용객의 편의를 위해 사전 대관 문의 후 진행 가능합니다.
                 </p>
               </div>
             </div>
@@ -438,13 +438,13 @@ export default function LocationPage() {
               {/* Left Info */}
               <div className="lg:col-span-5">
                 <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
-                  QUICK INQUIRIES & TABLE
+                  QUICK INQUIRIES & RESERVATION
                 </span>
                 <h2 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                  테라스 예약 및 단체 문의
+                  테라스 대관 및 단체 문의
                 </h2>
                 <p className="mt-3 text-xs sm:text-sm text-[#665D56] leading-relaxed">
-                  소규모 모임, 테라스 지정석, 원두 납품이나 공간 대관에 대해 궁금한 점이 있으시다면 간편하게 메시지를 남겨주세요.
+                  단체 모임, 테라스 공간 대관 및 촬영 문의는 아래 양식이나 인스타그램 DM으로 편하게 연락해 주세요.
                 </p>
 
                 <div className="mt-6 space-y-2 text-xs text-[#5E534C]">

@@ -16,21 +16,21 @@ export default function Home() {
       title: "The Terrace",
       badge: "야외 테라스",
       badgeColor: "bg-[#EBF0E6] text-[#486338]",
-      desc: "야외 테라스의 부드러운 바람과 따뜻한 햇살 아래, 느긋하게 흐르는 일상의 휴식.",
+      desc: "탁 트인 야외에서 바람과 햇살을 즐길 수 있는 조블라의 대표 테라스 공간입니다.",
       img: "/images/terrace_02.jpg",
     },
     {
       title: "Indoor Lounge",
       badge: "실내 라운지",
       badgeColor: "bg-[#F9ECE7] text-[#9E5336]",
-      desc: "붉은 벽돌과 포근한 조명이 어우러진 아늑하고 고요한 실내 휴식 공간.",
+      desc: "붉은 벽돌과 편안한 우드톤으로 꾸며진 차분하고 아늑한 실내 좌석입니다.",
       img: "/images/indoor_01.jpg",
     },
     {
       title: "Courtyard Patio",
       badge: "안뜰 테라스",
       badgeColor: "bg-[#F2ECE3] text-[#7A6B56]",
-      desc: "도심 속 숨겨진 안뜰, 도란도란 나누는 대화와 커피 한 잔의 여유.",
+      desc: "골목 안쪽에 자리해 소음 없이 프라이빗하게 머물 수 있는 안뜰 공간입니다.",
       img: "/images/terrace_03.jpg",
     },
   ];
@@ -40,28 +40,28 @@ export default function Home() {
       title: "너티초콜릿크림라떼",
       subtitle: "Nutty Chocolate Cream Latte",
       price: "₩ 8,900",
-      desc: "고소한 견과류의 풍미와 진한 다크 초콜릿, 부드러운 수제 생크림이 조화를 이루는 시그니처 라떼",
+      desc: "고소한 견과류 풍미와 진한 다크 초콜릿, 쫀득한 수제 크림의 조화",
       tags: "Signature • Cream Coffee",
     },
     {
       title: "레몬버터크림라떼",
       subtitle: "Lemon Butter Cream Latte",
       price: "₩ 8,900",
-      desc: "싱그러운 레몬 향과 고소한 버터스카치 풍미의 크림이 에스프레소와 어우러진 조블라 대표 음료",
+      desc: "상큼한 레몬 제스트 향과 달콤하고 부드러운 버터크림이 어우러진 시그니처",
       tags: "Signature • Sweet & Citrus",
     },
     {
       title: "애플 고르곤졸라 치즈케이크",
       subtitle: "Apple Gorgonzola Cheesecake",
       price: "₩ 13,900",
-      desc: "깊은 풍미의 고르곤졸라 치즈에 향긋하고 달콤한 사과 콩포트를 더한 프리미엄 수제 케이크",
+      desc: "진한 고르곤졸라 치즈의 풍미에 달콤한 수제 사과 콩포트를 얹은 치즈케이크",
       tags: "Dessert • House Special",
     },
     {
       title: "바스크치즈케이크",
       subtitle: "Basque Burnt Cheesecake",
       price: "₩ 11,900",
-      desc: "고온에서 구워내 스모키한 캐러멜 향과 부드럽고 촉촉한 텍스처를 극대화한 클래식 바스크",
+      desc: "고온에서 구워내 겉은 스모키하고 속은 촉촉하고 부드러운 정통 바스크 케이크",
       tags: "Dessert • Daily Baked",
     },
   ];
@@ -77,35 +77,35 @@ export default function Home() {
               {/* Badge */}
               <div className="inline-flex items-center gap-1.5 rounded-full bg-[#ECE4D8] px-3.5 py-1 text-[11px] font-semibold tracking-wider text-[#685E55] uppercase">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#9B4A25]" />
-                COURTYARD SANCTUARY
+                TERRACE CAFE JOVULAR
               </div>
 
               {/* Title */}
               <h1 className="mt-6 text-4xl sm:text-6xl text-[#2D2522] leading-[1.1] font-serif">
-                Live in a <br />
-                <span className="italic font-normal text-[#9B4A25]">Jovular Mood</span>
+                Cafe Jovular <br />
+                <span className="italic font-normal text-[#9B4A25]">Terrace & Coffee</span>
               </h1>
 
               {/* Sub description */}
               <p className="mt-6 text-base sm:text-lg text-[#665D56] leading-relaxed max-w-md">
-                햇살 가득한 테라스와 향긋한 커피, 유럽의 작은 안뜰에서 누리는 여유로운 시간
+                홍대 와우산로 골목 안쪽에 위치한 프라이빗 테라스 카페 조블라입니다.
               </p>
 
               {/* Feature icons */}
               <div className="mt-8 flex flex-wrap items-center gap-4 text-xs font-medium text-[#61564E]">
                 <div className="flex items-center gap-1.5">
                   <Sun className="h-4 w-4 text-[#C26B38]" />
-                  <span>Sunlit Terraces</span>
+                  <span>Outdoor Terrace</span>
                 </div>
                 <span className="text-[#C9BFB5]">•</span>
                 <div className="flex items-center gap-1.5">
                   <Sprout className="h-4 w-4 text-[#C26B38]" />
-                  <span>Garden Trellis</span>
+                  <span>Indoor Lounge</span>
                 </div>
                 <span className="text-[#C9BFB5]">•</span>
                 <div className="flex items-center gap-1.5">
                   <Coffee className="h-4 w-4 text-[#C26B38]" />
-                  <span>Artisanal Coffee</span>
+                  <span>Coffee & Dessert</span>
                 </div>
               </div>
 
@@ -115,7 +115,7 @@ export default function Home() {
                   href="#menu"
                   className="inline-flex items-center gap-2 rounded-full bg-[#9B4A25] px-6 py-3 text-sm font-medium text-white hover:bg-[#853C1B] transition-colors shadow-sm"
                 >
-                  둘러보기
+                  메뉴 보기
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <Link
@@ -146,10 +146,10 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-[10px] font-semibold tracking-wider text-[#8C8075] uppercase">
-                      COURTYARD ROASTERY
+                      SPECIALTY COFFEE
                     </p>
                     <p className="font-serif text-xs font-semibold text-[#2D2522]">
-                      jovular patio
+                      Cafe Jovular
                     </p>
                   </div>
                 </div>
@@ -157,11 +157,11 @@ export default function Home() {
                 {/* Floating Card 2: Right Bottom */}
                 <div className="absolute -bottom-8 right-2 sm:right-4 max-w-[210px] rounded-2xl bg-white/95 backdrop-blur-md px-4 py-3 shadow-lg border border-white/60">
                   <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#C26B38] tracking-wider uppercase">
-                    <Sun className="h-3.5 w-3.5" />
-                    GOLDEN HOUR
+                    <Clock className="h-3.5 w-3.5" />
+                    OPEN EVERYDAY
                   </div>
                   <p className="mt-1 text-[11px] leading-tight text-[#665D56]">
-                    오후 3시, 붉은 벽돌과 레몬 향이 가장 따스한 순간.
+                    매일 09:00 – 24:00 (연중무휴)
                   </p>
                 </div>
               </div>
@@ -170,21 +170,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Courtyard Mood Section (여유를 채우는 세 가지 조각) */}
+      {/* 3. Space Section */}
       <section id="about" className="py-20 border-t border-[#EAE3D9]/70">
         <div className="mx-auto max-w-6xl px-6">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
             <div>
               <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
-                COURTYARD MOOD
+                SPACE & SEATS
               </span>
               <h2 className="mt-2 text-3xl font-serif font-bold text-[#2D2522]">
-                여유를 채우는 세 가지 조각
+                조블라 공간 안내
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-[#736860] max-w-md leading-relaxed">
-              붉은 벽돌길과 등나무 그늘, 유럽 정원의 고요한 리듬 속에서 당신만의 속도를 찾아보세요.
+              도심 속 한적한 야외 테라스와 아늑한 실내 좌석이 준비되어 있습니다.
             </p>
           </div>
 
@@ -225,13 +225,13 @@ export default function Home() {
           {/* Title Area */}
           <div className="text-center max-w-xl mx-auto mb-14">
             <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
-              HANDCRAFTED & BREWED
+              SIGNATURE MENU
             </span>
             <h2 className="mt-2 text-3xl sm:text-4xl font-serif font-normal text-[#2D2522]">
               Signature Menu
             </h2>
             <p className="mt-3 text-xs sm:text-sm text-[#736860]">
-              조블라 파티오의 분위기를 잔과 접시에 담아낸 시그니처 라인업
+              조블라만의 시그니처 크림라떼와 직접 구워내는 수제 치즈케이크
             </p>
           </div>
 
@@ -272,20 +272,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. Opening Hours & Hospitality Banner */}
+      {/* 5. Opening Hours Banner */}
       <section id="visit" className="py-14">
         <div className="mx-auto max-w-6xl px-6">
           <div className="rounded-3xl bg-[#ECE4D8]/80 border border-[#DDD3C6] p-8 sm:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div className="max-w-xl">
               <div className="flex items-center gap-2 text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
                 <Clock className="h-3.5 w-3.5" />
-                OPENING HOURS & HOSPITALITY
+                OPENING HOURS
               </div>
               <h2 className="mt-3 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                매일 09:00 – 24:00, 도심 속 여유로운 휴식
+                매일 오전 9시부터 밤 12시까지 열려있습니다
               </h2>
               <p className="mt-3 text-xs sm:text-sm text-[#665D56] leading-relaxed">
-                조블라의 야외 테라스는 따스한 햇살과 커피 한 잔의 온기가 가득합니다. 도심 속 숨겨진 햇살 가득한 안뜰로 초대합니다.
+                햇살 좋은 낮 시간의 야외 테라스부터 밤의 아늑한 무드까지, 언제든 편하게 찾아와 주세요.
               </p>
             </div>
 
@@ -293,16 +293,16 @@ export default function Home() {
               <div className="flex items-center gap-2 rounded-xl bg-white/70 px-4 py-2.5 text-xs font-medium text-[#5E534C] border border-white/60">
                 <Sun className="h-4 w-4 text-[#9B4A25]" />
                 <div className="leading-tight">
-                  <span className="block font-semibold text-[#2D2522]">Patio Seating</span>
-                  <span className="text-[10px] text-[#8C8075]">Sunlit Courtyard</span>
+                  <span className="block font-semibold text-[#2D2522]">Terrace & Indoor</span>
+                  <span className="text-[10px] text-[#8C8075]">와우산로 골목 안쪽</span>
                 </div>
               </div>
               <Link
                 href="/location"
                 className="rounded-xl bg-[#9B4A25] px-6 py-3 text-xs font-semibold text-white tracking-wide hover:bg-[#853C1B] transition-colors shadow-sm flex items-center gap-1.5"
               >
-                위치 및 예약 안내
-                <span className="text-[10px]">◊</span>
+                매장 위치 보기
+                <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
           </div>
@@ -311,4 +311,3 @@ export default function Home() {
     </>
   );
 }
-
