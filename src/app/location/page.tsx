@@ -15,7 +15,6 @@ import {
   Coffee, 
   Umbrella, 
   Camera, 
-  Footprints, 
   HelpCircle,
   Sun
 } from "lucide-react";
@@ -108,7 +107,7 @@ export default function LocationPage() {
                     <Coffee className="h-4 w-4" />
                   </div>
                   <span className="rounded-full bg-[#EFE8DF] px-3 py-1 text-[11px] font-medium text-[#736860]">
-                    Pet & Coffee
+                    Courtyard & Coffee
                   </span>
                 </div>
 
@@ -116,7 +115,7 @@ export default function LocationPage() {
                   자연스러운 쉼이 있는 곳
                 </h3>
                 <p className="mt-3 text-xs leading-relaxed text-[#736860]">
-                  프렌치풍 크림 트렐리스와 싱그러운 레몬 장식이 반겨주는 공간. 반려견과 함께 따뜻한 커피 한 잔의 여유를 즐겨보세요.
+                  프렌치풍 크림 트렐리스와 싱그러운 레몬 장식이 반겨주는 공간. 안뜰 테라스에서 따뜻한 커피 한 잔의 여유를 즐겨보세요.
                 </p>
               </div>
 
@@ -258,8 +257,8 @@ export default function LocationPage() {
                 </p>
                 <div className="flex flex-wrap gap-2 text-xs text-[#5E534C]">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
-                    <Footprints className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    반려동물 동반 가능 (Pet-Friendly)
+                    <Sparkles className="h-3.5 w-3.5 text-[#9B4A25]" />
+                    포토존 & 가든 뷰
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
                     <Sun className="h-3.5 w-3.5 text-[#9B4A25]" />
@@ -378,7 +377,7 @@ export default function LocationPage() {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-[#736860] max-w-md leading-relaxed">
-              모든 고객님과 반려동물이 평화롭고 쾌적한 시간을 보낼 수 있도록 세 가지 약속을 지켜주세요.
+              모든 고객님이 평화롭고 쾌적한 시간을 보낼 수 있도록 세 가지 약속을 지켜주세요.
             </p>
           </div>
 
@@ -387,13 +386,13 @@ export default function LocationPage() {
             <div className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm flex flex-col justify-between">
               <div>
                 <div className="h-9 w-9 rounded-xl bg-[#FAF5EE] border border-[#DDD3C6] flex items-center justify-center text-[#9B4A25]">
-                  <Footprints className="h-4 w-4" />
+                  <Coffee className="h-4 w-4" />
                 </div>
                 <h3 className="mt-4 font-serif text-base font-bold text-[#2D2522]">
-                  01. 반려견 목줄 착용
+                  01. 쾌적한 휴식 에티켓
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-[#736860]">
-                  테라스 내 안전과 다른 손님에 대한 배려를 위해 반드시 리드줄(목줄)을 착용해 주시고, 이동 시 보호자의 케어를 부탁드립니다.
+                  모두를 위한 고요하고 편안한 안식처를 위해 큰 소리의 대화나 통화는 자제해 주시고, 서로를 배려하는 따뜻한 매너를 부탁드립니다.
                 </p>
               </div>
             </div>

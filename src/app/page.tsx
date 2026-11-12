@@ -2,7 +2,6 @@ import Link from "next/link";
 import { 
   Sun, 
   Sprout, 
-  Footprints, 
   Coffee, 
   Clock, 
   ArrowRight, 
@@ -103,8 +102,8 @@ export default function Home() {
                 </div>
                 <span className="text-[#C9BFB5]">•</span>
                 <div className="flex items-center gap-1.5">
-                  <Footprints className="h-4 w-4 text-[#C26B38]" />
-                  <span>Pet Welcome</span>
+                  <Coffee className="h-4 w-4 text-[#C26B38]" />
+                  <span>Artisanal Coffee</span>
                 </div>
               </div>
 
@@ -280,19 +279,19 @@ export default function Home() {
                 OPENING HOURS & HOSPITALITY
               </div>
               <h2 className="mt-3 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                매일 11:00 – 21:00, 반려동물과 함께 편안하게
+                매일 11:00 – 21:00, 도심 속 여유로운 휴식
               </h2>
               <p className="mt-3 text-xs sm:text-sm text-[#665D56] leading-relaxed">
-                조뷸러의 야외 테라스는 목줄을 착용한 반려견의 입장을 따뜻하게 환영합니다. 도심 속 숨겨진 햇살 가득한 안뜰로 초대합니다.
+                조뷸러의 야외 테라스는 따스한 햇살과 커피 한 잔의 온기가 가득합니다. 도심 속 숨겨진 햇살 가득한 안뜰로 초대합니다.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-start sm:items-center gap-4 shrink-0">
               <div className="flex items-center gap-2 rounded-xl bg-white/70 px-4 py-2.5 text-xs font-medium text-[#5E534C] border border-white/60">
-                <Footprints className="h-4 w-4 text-[#9B4A25]" />
+                <Sun className="h-4 w-4 text-[#9B4A25]" />
                 <div className="leading-tight">
                   <span className="block font-semibold text-[#2D2522]">Patio Seating</span>
-                  <span className="text-[10px] text-[#8C8075]">Pet-Friendly Courtyard</span>
+                  <span className="text-[10px] text-[#8C8075]">Sunlit Courtyard</span>
                 </div>
               </div>
               <Link

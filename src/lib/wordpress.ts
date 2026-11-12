@@ -2,6 +2,7 @@ export interface WordPressPost {
   id: number;
   date: string;
   slug: string;
+  link: string;
   title: string;
   excerpt: string;
   content: string;
@@ -59,6 +60,7 @@ export async function getWordPressPosts(): Promise<WordPressPost[]> {
         id: post.id,
         date: formattedDate,
         slug: post.slug,
+        link: post.link || "#",
         title: stripHtml(post.title?.rendered || "무제"),
         excerpt: stripHtml(post.excerpt?.rendered || ""),
         content: post.content?.rendered || "",

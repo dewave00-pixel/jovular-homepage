@@ -5,7 +5,7 @@ import {
   Heart, 
   Sun, 
   Flower2, 
-  Footprints, 
+  Sparkles, 
   ArrowRight 
 } from "lucide-react";
 
@@ -27,9 +27,9 @@ export default function AboutPage() {
     },
     {
       num: "03",
-      title: "반려동물 친화적 테라스 (Pet Friendly)",
-      desc: "사랑하는 반려견과 함께 편안히 머물 수 있도록 널찍한 야외 좌석과 신선한 물, 펫 웰컴 프렌들리 매너를 소중히 가꿔갑니다.",
-      icon: Footprints,
+      title: "편안한 휴식과 온기 (Peaceful Retreat)",
+      desc: "복잡한 일상에서 벗어나 혼자만의 사색과 소중한 사람들과의 정겨운 대화를 온전히 나눌 수 있는 아늑한 쉼터를 선물합니다.",
+      icon: Sparkles,
       iconBg: "bg-[#F2ECE3] text-[#7A6B56]",
     },
   ];
@@ -54,13 +54,13 @@ export default function AboutPage() {
       img: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80",
     },
     {
-      badge: "Companion Friendly",
-      subTag: "WITH BELOVED PETS",
+      badge: "Quiet Retreat",
+      subTag: "COZY & PEACEFUL",
       icon: Heart,
-      title: "Pet Friendly",
-      desc: "반려견과 함께하는 편안한 티타임. 언제나 깨끗한 물과 편안한 쿠션이 구비되어 있어 함께 평화로운 휴식을 누릴 수 있습니다.",
-      linkText: "펫 에티켓 보기 →",
-      img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80",
+      title: "The Brick Lounge",
+      desc: "붉은 벽돌과 원목 인테리어가 주는 포근함 속에서 조용히 책을 읽거나 잔잔한 음악과 함께 여유를 즐길 수 있는 실내 라운지입니다.",
+      linkText: "라운지 공간 둘러보기 →",
+      img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80",
     },
   ];
 

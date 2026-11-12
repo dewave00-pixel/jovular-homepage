@@ -8,7 +8,9 @@ import {
   ArrowUpRight, 
   Calendar, 
   Clock, 
-  Camera 
+  Camera,
+  Loader2,
+  BookOpen
 } from "lucide-react";
 import { getWordPressPosts, type WordPressPost } from "@/lib/wordpress";
 
@@ -16,66 +18,6 @@ export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState("전체보기 (All)");
   const [wpPosts, setWpPosts] = useState<WordPressPost[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const categories = [
-    "전체보기 (All)",
-    "Season Special",
-    "Coffee & Tea",
-    "Terrace Notes",
-    "Cafe Life",
-  ];
-
-  // 기본 시안 샘플 글 목록 (워드프레스 글이 아직 적을 때 함께 조화롭게 표출)
-  const fallbackArticles = [
-    {
-      id: 991,
-      category: "Terrace Notes",
-      date: "2025.05.14",
-      title: "테라스 식물 가꾸기: 조뷸러의 올리브나무와 레몬트리",
-      desc: "햇빛과 바람이 풍부한 벽돌 안뜰에서 건강하게 자라는 은빛 올리브 잎과 꽃망울을 맺은 레몬 나무들의 초여름 이야기.",
-      img: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: 992,
-      category: "Coffee & Tea",
-      date: "2025.05.08",
-      title: "이번 달의 싱글 오리진 필터 커피 이야기",
-      desc: "에티오피아 예가체프 게뎁 워시드의 재스민 향과 복숭아 산미, 그리고 테라스에서 마실 때 가장 극대화되는 향미.",
-      img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: 993,
-      category: "Cafe Life",
-      date: "2025.04.29",
-      title: "반려견과 함께 방문하시는 분들을 위한 파티오 이용 안내",
-      desc: "모두가 편안한 테라스 시간을 위해 준비된 전용 음수대, 리드줄 고리 벤치와 조뷸러의 펫 프렌들리 가이드라인.",
-      img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: 994,
-      category: "Terrace Notes",
-      date: "2025.04.18",
-      title: "비 오는 날의 조뷸러, 안뜰 처마 밑의 운치",
-      desc: "차양에 부딪히는 빗소리와 젖은 흙내음, 쌀쌀한 날씨에 어울리는 따뜻한 시나몬 플랫화이트와 함께 머무는 고요한 오후.",
-      img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: 995,
-      category: "Coffee & Tea",
-      date: "2025.04.02",
-      title: "원두 로스팅 프로파일: 산뜻함과 묵직함의 균형",
-      desc: "조뷸러의 시그니처 하우스 블렌드가 탄생하기까지의 로스팅 데이터와 햇살 아래 가장 편안하게 음미할 수 있는 추출 비율.",
-      img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-      id: 996,
-      category: "Season Special",
-      date: "2025.03.24",
-      title: "봄날의 버터 풍미: 수제 피낭시에와 허브티 페어링",
-      desc: "헤이즐넛 버터의 깊은 풍미를 끌어올린 세 가지 구움과자와 유기농 카모마일 블렌드의 조화로운 오후 티타임.",
-      img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
-    },
-  ];
 
   useEffect(() => {
     async function fetchPosts() {
@@ -91,41 +33,25 @@ export default function BlogPage() {
     fetchPosts();
   }, []);
 
-  // 워드프레스 실시간 글 + 기존 글 병합 (워드프레스 최신 글이 최우선)
-  const convertedWpArticles = wpPosts.map((wp) => ({
-    id: wp.id,
-    category: wp.category,
-    date: wp.date,
-    title: wp.title,
-    desc: wp.excerpt || "조뷸러의 새로운 소식입니다.",
-    img: wp.featuredImage,
-    author: wp.authorName,
-    isWordPress: true,
-  }));
+  // 워드프레스 포스트에서 동적으로 카테고리 추출
+  const dynamicCategories = Array.from(
+    new Set(wpPosts.map((wp) => wp.category).filter(Boolean))
+  );
+  const categories = [
+    "전체보기 (All)",
+    ...(dynamicCategories.length > 0 ? dynamicCategories : []),
+  ];
 
-  // 전체 글 (워드프레스 글 우선)
-  const allArticles = [...convertedWpArticles, ...fallbackArticles];
+  // 추천 메인 스토리 (워드프레스 최신 첫 번째 글)
+  const featuredArticle = wpPosts.length > 0 ? wpPosts[0] : null;
 
-  // 추천 메인 스토리 (워드프레스 최신 글이 있으면 그것으로, 없으면 기본 스토리)
-  const featuredArticle = convertedWpArticles.length > 0
-    ? convertedWpArticles[0]
-    : {
-        id: 990,
-        title: "초여름 테라스에 어울리는 새로운 시트러스 에이드와 레몬 타르트",
-        category: "Season Special",
-        date: "2025.05.20",
-        desc: "따사로운 햇살이 파티오 붉은 벽돌과 목재 테이블 위로 길게 드리우는 5월 하순, 안뜰에 만개한 레몬트리의 향취를 담아 상큼한 유자청과 카라카라 오렌지를 블렌딩한 시그니처 음료를 소개합니다.",
-        img: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=80",
-        author: "Barista Min & Roaster",
-      };
-
-  // 그리드에 보여줄 글 (추천 스토리를 제외한 나머지)
-  const gridArticles = allArticles.filter(a => a.id !== featuredArticle.id);
+  // 나머지 그리드 글 (첫 번째 글을 제외한 나머지)
+  const gridArticles = wpPosts.length > 1 ? wpPosts.slice(1) : [];
 
   // 카테고리 필터링
   const filteredArticles = activeCategory === "전체보기 (All)"
     ? gridArticles
-    : gridArticles.filter(a => a.category.toLowerCase().includes(activeCategory.toLowerCase().replace(/[^a-zA-Z]/g, '')));
+    : gridArticles.filter(a => a.category.toLowerCase().includes(activeCategory.toLowerCase().replace(/[^a-zA-Z가-힣0-9]/g, '')));
 
   return (
     <>
@@ -161,141 +87,194 @@ export default function BlogPage() {
           </div>
 
           {/* Category Filter Tabs */}
-          <div className="mt-8 flex flex-wrap items-center gap-2 pt-2 border-b border-[#EAE3D9]/60 pb-4">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
-                  activeCategory === cat
-                    ? "bg-[#9B4A25] text-white shadow-sm"
-                    : "text-[#685E55] hover:text-[#2D2522] hover:bg-[#EFE8DF]/60"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+          {categories.length > 1 && (
+            <div className="mt-8 flex flex-wrap items-center gap-2 pt-2 border-b border-[#EAE3D9]/60 pb-4">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
+                    activeCategory === cat
+                      ? "bg-[#9B4A25] text-white shadow-sm"
+                      : "text-[#685E55] hover:text-[#2D2522] hover:bg-[#EFE8DF]/60"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
+
+      {/* Loading Skeleton */}
+      {loading && (
+        <section className="pb-16">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="rounded-3xl bg-white border border-[#ECE5DC] p-12 text-center shadow-sm">
+              <Loader2 className="h-8 w-8 text-[#9B4A25] animate-spin mx-auto mb-3" />
+              <p className="text-xs font-medium text-[#736860]">
+                조뷸러 저널 소식을 불러오는 중입니다...
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Empty State */}
+      {!loading && !featuredArticle && (
+        <section className="pb-16">
+          <div className="mx-auto max-w-4xl px-6">
+            <div className="rounded-3xl bg-white border border-[#ECE5DC] p-12 sm:p-16 text-center shadow-sm">
+              <div className="h-12 w-12 rounded-full bg-[#FAF5EE] text-[#9B4A25] flex items-center justify-center mx-auto mb-4">
+                <BookOpen className="h-6 w-6" />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-[#2D2522]">
+                등록된 포스트가 없습니다
+              </h3>
+              <p className="mt-2 text-xs sm:text-sm text-[#736860]">
+                새로운 테라스 이야기와 카페 소식이 곧 업데이트될 예정입니다.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 3. Featured Story Card */}
-      <section className="pb-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="rounded-3xl bg-white border border-[#ECE5DC] shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-12 hover:shadow-md transition-shadow">
-            {/* Left Image */}
-            <div className="md:col-span-7 relative min-h-[300px] sm:min-h-[380px] bg-[#EFE8DF]">
-              <img
-                src={featuredArticle.img}
-                alt={featuredArticle.title}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute top-4 left-4 flex gap-2">
-                <span className="rounded-full bg-[#3D342E]/80 backdrop-blur-sm px-3 py-1 text-[11px] font-medium text-white">
-                  Featured Story
-                </span>
-                <span className="rounded-full bg-[#E5A83E] px-3 py-1 text-[11px] font-medium text-white shadow-sm">
-                  {featuredArticle.category}
-                </span>
-              </div>
-            </div>
-
-            {/* Right Content */}
-            <div className="md:col-span-5 p-7 sm:p-10 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2 text-xs text-[#8C8075]">
-                  <Calendar className="h-3.5 w-3.5 text-[#9B4A25]" />
-                  <span>{featuredArticle.date}</span>
-                  <span>•</span>
-                  <span>5 min read</span>
+      {!loading && featuredArticle && (
+        <section className="pb-16">
+          <div className="mx-auto max-w-6xl px-6">
+            <a
+              href={featuredArticle.link || "#"}
+              target={featuredArticle.link && featuredArticle.link !== "#" ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              className="block group rounded-3xl bg-white border border-[#ECE5DC] shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-12 hover:shadow-md transition-shadow"
+            >
+              {/* Left Image */}
+              <div className="md:col-span-7 relative min-h-[300px] sm:min-h-[380px] bg-[#EFE8DF] overflow-hidden">
+                <img
+                  src={featuredArticle.featuredImage}
+                  alt={featuredArticle.title}
+                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 left-4 flex gap-2">
+                  <span className="rounded-full bg-[#3D342E]/80 backdrop-blur-sm px-3 py-1 text-[11px] font-medium text-white">
+                    Featured Story
+                  </span>
+                  <span className="rounded-full bg-[#E5A83E] px-3 py-1 text-[11px] font-medium text-white shadow-sm">
+                    {featuredArticle.category}
+                  </span>
                 </div>
-                <h2 className="mt-4 text-xl sm:text-2xl font-serif font-bold text-[#2D2522] leading-snug">
-                  {featuredArticle.title}
-                </h2>
-                <p className="mt-4 text-xs sm:text-sm text-[#736860] leading-relaxed line-clamp-4">
-                  {featuredArticle.desc}
-                </p>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-[#F2ECE3] flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <div className="h-8 w-8 rounded-full bg-[#EFE8DF] flex items-center justify-center text-xs font-serif font-bold text-[#9B4A25]">
-                    JV
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-[#2D2522]">{featuredArticle.author || "Jovular Barista"}</p>
-                    <p className="text-[10px] text-[#8C8075]">Jovular Courtyard</p>
-                  </div>
-                </div>
-
-                <button className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2D2522] hover:text-[#9B4A25] transition-colors">
-                  Read Journal
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Archive Grid (최신 기록 & 테라스 노트) */}
-      <section className="py-12 border-t border-[#EAE3D9]/70">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex items-baseline justify-between mb-8">
-            <div className="flex items-baseline gap-2">
-              <h2 className="text-lg font-serif font-bold text-[#2D2522]">
-                최신 기록 & 테라스 노트
-              </h2>
-              <span className="text-[11px] font-mono tracking-widest text-[#8C8075] uppercase">
-                ARCHIVE
-              </span>
-            </div>
-            <span className="text-xs text-[#8C8075]">
-              총 {filteredArticles.length}편의 에세이
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {filteredArticles.map((item) => (
-              <div
-                key={item.id}
-                className="group rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-              >
+              {/* Right Content */}
+              <div className="md:col-span-5 p-7 sm:p-10 flex flex-col justify-between">
                 <div>
-                  <div className="relative overflow-hidden rounded-xl aspect-[16/10] bg-[#EFE8DF]">
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <span className="absolute top-3 left-3 rounded bg-black/60 backdrop-blur-sm px-2.5 py-0.5 text-[10px] font-medium text-white">
-                      {item.category}
-                    </span>
+                  <div className="flex items-center gap-2 text-xs text-[#8C8075]">
+                    <Calendar className="h-3.5 w-3.5 text-[#9B4A25]" />
+                    <span>{featuredArticle.date}</span>
+                    <span>•</span>
+                    <span>5 min read</span>
                   </div>
-
-                  <div className="mt-4 flex items-center gap-1.5 text-[11px] text-[#8C8075]">
-                    <Clock className="h-3 w-3" />
-                    <span>{item.date}</span>
-                  </div>
-
-                  <h3 className="mt-2 text-base font-serif font-bold text-[#2D2522] leading-snug group-hover:text-[#9B4A25] transition-colors">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-2 text-xs leading-relaxed text-[#736860] line-clamp-2">
-                    {item.desc}
+                  <h2 className="mt-4 text-xl sm:text-2xl font-serif font-bold text-[#2D2522] leading-snug group-hover:text-[#9B4A25] transition-colors">
+                    {featuredArticle.title}
+                  </h2>
+                  <p className="mt-4 text-xs sm:text-sm text-[#736860] leading-relaxed line-clamp-4">
+                    {featuredArticle.excerpt || "조뷸러의 새로운 소식입니다."}
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-[#F2ECE3] flex items-center justify-between text-xs text-[#8C5338] font-medium group-hover:text-[#68331E]">
-                  <span>더 읽어보기</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                <div className="mt-8 pt-6 border-t border-[#F2ECE3] flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-8 w-8 rounded-full bg-[#EFE8DF] flex items-center justify-center text-xs font-serif font-bold text-[#9B4A25]">
+                      JV
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-[#2D2522]">{featuredArticle.authorName || "Jovular Barista"}</p>
+                      <p className="text-[10px] text-[#8C8075]">Jovular Courtyard</p>
+                    </div>
+                  </div>
+
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2D2522] group-hover:text-[#9B4A25] transition-colors">
+                    Read Journal
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
                 </div>
               </div>
-            ))}
+            </a>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* 4. Archive Grid (최신 기록 & 테라스 노트) */}
+      {!loading && gridArticles.length > 0 && (
+        <section className="py-12 border-t border-[#EAE3D9]/70">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="flex items-baseline justify-between mb-8">
+              <div className="flex items-baseline gap-2">
+                <h2 className="text-lg font-serif font-bold text-[#2D2522]">
+                  최신 기록 & 테라스 노트
+                </h2>
+                <span className="text-[11px] font-mono tracking-widest text-[#8C8075] uppercase">
+                  ARCHIVE
+                </span>
+              </div>
+              <span className="text-xs text-[#8C8075]">
+                총 {filteredArticles.length}편의 에세이
+              </span>
+            </div>
+
+            {filteredArticles.length === 0 ? (
+              <div className="py-12 text-center text-xs text-[#736860]">
+                해당 카테고리에 등록된 포스트가 없습니다.
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {filteredArticles.map((item) => (
+                  <a
+                    key={item.id}
+                    href={item.link || "#"}
+                    target={item.link && item.link !== "#" ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className="group rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="relative overflow-hidden rounded-xl aspect-[16/10] bg-[#EFE8DF]">
+                        <img
+                          src={item.featuredImage}
+                          alt={item.title}
+                          className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <span className="absolute top-3 left-3 rounded bg-black/60 backdrop-blur-sm px-2.5 py-0.5 text-[10px] font-medium text-white">
+                          {item.category}
+                        </span>
+                      </div>
+
+                      <div className="mt-4 flex items-center gap-1.5 text-[11px] text-[#8C8075]">
+                        <Clock className="h-3 w-3" />
+                        <span>{item.date}</span>
+                      </div>
+
+                      <h3 className="mt-2 text-base font-serif font-bold text-[#2D2522] leading-snug group-hover:text-[#9B4A25] transition-colors">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-2 text-xs leading-relaxed text-[#736860] line-clamp-2">
+                        {item.excerpt || "조뷸러의 새로운 소식입니다."}
+                      </p>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-[#F2ECE3] flex items-center justify-between text-xs text-[#8C5338] font-medium group-hover:text-[#68331E]">
+                      <span>더 읽어보기</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </div>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* 5. Mood Quote Banner */}
       <section className="py-14">
