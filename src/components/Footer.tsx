@@ -7,25 +7,19 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10">
           <div>
             <p className="font-medium text-sm text-[#2D2522]">
-              jovular patio cafe <span className="text-[#B3A79C]">•</span> European courtyard roastery
+              조블라 jovular patio cafe <span className="text-[#B3A79C]">•</span> European courtyard roastery
             </p>
             <p className="mt-1 text-xs text-[#8C8075]">
-              Mon - Sun: 7:30 AM - 7:00 PM • Sunset Spritz & Patio Hours till 9:00 PM
+              Mon - Sun: 09:00 - 24:00 (Everyday)
             </p>
             <p className="mt-0.5 text-xs text-[#8C8075]">
-              428 Trellis Courtyard Way, Sunlit Walkway
+              서울 마포구 와우산로 29마길 (조블라 Jovular)
             </p>
           </div>
 
           <div className="flex items-center gap-8 text-xs font-medium text-[#5E534C]">
-            <Link href="/blog" className="hover:text-[#9B4A25] transition-colors">
-              Stories & Notes
-            </Link>
             <Link href="/location" className="hover:text-[#9B4A25] transition-colors">
-              Find Courtyard
-            </Link>
-            <Link href="/about" className="hover:text-[#9B4A25] transition-colors">
-              Our Philosophy
+              Find Courtyard (위치 안내)
             </Link>
           </div>
         </div>

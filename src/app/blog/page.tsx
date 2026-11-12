@@ -1,3 +1,12 @@
+import { redirect } from "next/navigation";
+
+export default function BlogPage() {
+  // 임시 비활성화: Blog 페이지 hide 처리 (추후 재오픈)
+  redirect("/");
+}
+
+/*
+// [추후 재오픈 시 복원 코드]
 "use client";
 
 import { useState, useEffect } from "react";
@@ -14,7 +23,7 @@ import {
 } from "lucide-react";
 import { getWordPressPosts, type WordPressPost } from "@/lib/wordpress";
 
-export default function BlogPage() {
+export function BlogPageContent() {
   const [activeCategory, setActiveCategory] = useState("전체보기 (All)");
   const [wpPosts, setWpPosts] = useState<WordPressPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,7 +42,6 @@ export default function BlogPage() {
     fetchPosts();
   }, []);
 
-  // 워드프레스 포스트에서 동적으로 카테고리 추출
   const dynamicCategories = Array.from(
     new Set(wpPosts.map((wp) => wp.category).filter(Boolean))
   );
@@ -42,20 +50,15 @@ export default function BlogPage() {
     ...(dynamicCategories.length > 0 ? dynamicCategories : []),
   ];
 
-  // 추천 메인 스토리 (워드프레스 최신 첫 번째 글)
   const featuredArticle = wpPosts.length > 0 ? wpPosts[0] : null;
-
-  // 나머지 그리드 글 (첫 번째 글을 제외한 나머지)
   const gridArticles = wpPosts.length > 1 ? wpPosts.slice(1) : [];
 
-  // 카테고리 필터링
   const filteredArticles = activeCategory === "전체보기 (All)"
     ? gridArticles
     : gridArticles.filter(a => a.category.toLowerCase().includes(activeCategory.toLowerCase().replace(/[^a-zA-Z가-힣0-9]/g, '')));
 
   return (
     <>
-      {/* 2. Journal Hero & Header */}
       <section className="pt-14 pb-8 sm:pt-16 sm:pb-12">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
@@ -68,11 +71,10 @@ export default function BlogPage() {
                 Jovular Journal
               </h1>
               <p className="mt-3 text-xs sm:text-sm text-[#736860]">
-                카페 조뷸러의 계절 이야기, 새로운 원두와 디저트 소식, 테라스의 일상
+                카페 조블라의 계절 이야기, 새로운 원두와 디저트 소식, 테라스의 일상
               </p>
             </div>
 
-            {/* Sunlight Index Card */}
             <div className="self-start rounded-2xl bg-white/80 border border-[#ECE5DC] p-3.5 px-5 shadow-sm flex items-center gap-3">
               <Sun className="h-5 w-5 text-[#C26B38]" />
               <div>
@@ -86,7 +88,6 @@ export default function BlogPage() {
             </div>
           </div>
 
-          {/* Category Filter Tabs */}
           {categories.length > 1 && (
             <div className="mt-8 flex flex-wrap items-center gap-2 pt-2 border-b border-[#EAE3D9]/60 pb-4">
               {categories.map((cat) => (
@@ -107,21 +108,19 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Loading Skeleton */}
       {loading && (
         <section className="pb-16">
           <div className="mx-auto max-w-6xl px-6">
             <div className="rounded-3xl bg-white border border-[#ECE5DC] p-12 text-center shadow-sm">
               <Loader2 className="h-8 w-8 text-[#9B4A25] animate-spin mx-auto mb-3" />
               <p className="text-xs font-medium text-[#736860]">
-                조뷸러 저널 소식을 불러오는 중입니다...
+                조블라 저널 소식을 불러오는 중입니다...
               </p>
             </div>
           </div>
         </section>
       )}
 
-      {/* Empty State */}
       {!loading && !featuredArticle && (
         <section className="pb-16">
           <div className="mx-auto max-w-4xl px-6">
@@ -140,7 +139,6 @@ export default function BlogPage() {
         </section>
       )}
 
-      {/* 3. Featured Story Card */}
       {!loading && featuredArticle && (
         <section className="pb-16">
           <div className="mx-auto max-w-6xl px-6">
@@ -150,7 +148,6 @@ export default function BlogPage() {
               rel="noopener noreferrer"
               className="block group rounded-3xl bg-white border border-[#ECE5DC] shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-12 hover:shadow-md transition-shadow"
             >
-              {/* Left Image */}
               <div className="md:col-span-7 relative min-h-[300px] sm:min-h-[380px] bg-[#EFE8DF] overflow-hidden">
                 <img
                   src={featuredArticle.featuredImage}
@@ -167,7 +164,6 @@ export default function BlogPage() {
                 </div>
               </div>
 
-              {/* Right Content */}
               <div className="md:col-span-5 p-7 sm:p-10 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 text-xs text-[#8C8075]">
@@ -180,7 +176,7 @@ export default function BlogPage() {
                     {featuredArticle.title}
                   </h2>
                   <p className="mt-4 text-xs sm:text-sm text-[#736860] leading-relaxed line-clamp-4">
-                    {featuredArticle.excerpt || "조뷸러의 새로운 소식입니다."}
+                    {featuredArticle.excerpt || "조블라의 새로운 소식입니다."}
                   </p>
                 </div>
 
@@ -206,7 +202,6 @@ export default function BlogPage() {
         </section>
       )}
 
-      {/* 4. Archive Grid (최신 기록 & 테라스 노트) */}
       {!loading && gridArticles.length > 0 && (
         <section className="py-12 border-t border-[#EAE3D9]/70">
           <div className="mx-auto max-w-6xl px-6">
@@ -260,7 +255,7 @@ export default function BlogPage() {
                       </h3>
 
                       <p className="mt-2 text-xs leading-relaxed text-[#736860] line-clamp-2">
-                        {item.excerpt || "조뷸러의 새로운 소식입니다."}
+                        {item.excerpt || "조블라의 새로운 소식입니다."}
                       </p>
                     </div>
 
@@ -276,7 +271,6 @@ export default function BlogPage() {
         </section>
       )}
 
-      {/* 5. Mood Quote Banner */}
       <section className="py-14">
         <div className="mx-auto max-w-4xl px-6">
           <div className="rounded-3xl bg-[#F4EFEA] border border-[#DDD3C6] p-10 text-center">
@@ -293,7 +287,6 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* 6. Instagram & Newsletter Subscription */}
       <section className="pb-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="rounded-3xl bg-[#ECE4D8]/80 border border-[#DDD3C6] p-8 sm:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
@@ -306,7 +299,7 @@ export default function BlogPage() {
                 @cafe_jovular 에서 실시간 일상을 만나보세요
               </h2>
               <p className="mt-3 text-xs sm:text-sm text-[#665D56] leading-relaxed">
-                오늘의 날씨, 테라스 개방 여부, 갓 구운 디저트 라인업 및 이벤트 소식을 가장 먼저 인스타그램과 조뷸러 뉴스레터로 전해드립니다.
+                오늘의 날씨, 테라스 개방 여부, 갓 구운 디저트 라인업 및 이벤트 소식을 가장 먼저 인스타그램과 조블라 뉴스레터로 전해드립니다.
               </p>
             </div>
 
@@ -335,7 +328,7 @@ export default function BlogPage() {
                   Instagram 팔로우
                 </span>
                 <span>•</span>
-                <span>매주 목요일 조뷸러 소식지 발송</span>
+                <span>매주 목요일 조블라 소식지 발송</span>
               </div>
             </div>
           </div>
@@ -344,3 +337,4 @@ export default function BlogPage() {
     </>
   );
 }
+*/

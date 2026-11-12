@@ -229,7 +229,7 @@ export default function Home() {
               Signature Menu
             </h2>
             <p className="mt-3 text-xs sm:text-sm text-[#736860]">
-              조뷸러 파티오의 분위기를 잔과 접시에 담아낸 시그니처 라인업
+              조블라 파티오의 분위기를 잔과 접시에 담아낸 시그니처 라인업
             </p>
           </div>
 
@@ -279,10 +279,10 @@ export default function Home() {
                 OPENING HOURS & HOSPITALITY
               </div>
               <h2 className="mt-3 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                매일 11:00 – 21:00, 도심 속 여유로운 휴식
+                매일 09:00 – 24:00, 도심 속 여유로운 휴식
               </h2>
               <p className="mt-3 text-xs sm:text-sm text-[#665D56] leading-relaxed">
-                조뷸러의 야외 테라스는 따스한 햇살과 커피 한 잔의 온기가 가득합니다. 도심 속 숨겨진 햇살 가득한 안뜰로 초대합니다.
+                조블라의 야외 테라스는 따스한 햇살과 커피 한 잔의 온기가 가득합니다. 도심 속 숨겨진 햇살 가득한 안뜰로 초대합니다.
               </p>
             </div>
 

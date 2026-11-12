@@ -11,8 +11,8 @@ export default function Header() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Blog", href: "/blog" },
+    // { name: "About", href: "/about" }, // 임시 비활성화 (추후 재오픈)
+    // { name: "Blog", href: "/blog" },   // 임시 비활성화 (추후 재오픈)
     { name: "Location", href: "/location" },
   ];
 

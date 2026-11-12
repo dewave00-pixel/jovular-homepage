@@ -1,3 +1,12 @@
+import { redirect } from "next/navigation";
+
+export default function AboutPage() {
+  // 임시 비활성화: About 페이지 hide 처리 (추후 재오픈)
+  redirect("/");
+}
+
+/*
+// [추후 재오픈 시 복원 코드]
 import Link from "next/link";
 import { 
   Coffee, 
@@ -9,7 +18,7 @@ import {
   ArrowRight 
 } from "lucide-react";
 
-export default function AboutPage() {
+export function AboutPageContent() {
   const coreValues = [
     {
       num: "01",
@@ -66,55 +75,38 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* 2. Top Title & Intro (Story & Sanctuary) */}
       <section className="pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
         <div className="mx-auto max-w-4xl px-6">
-          {/* Badge */}
           <div className="inline-flex items-center gap-1.5 rounded-full bg-[#ECE4D8] px-3.5 py-1 text-[11px] font-semibold tracking-wider text-[#685E55] uppercase">
             <span className="h-1.5 w-1.5 rounded-full bg-[#9B4A25]" />
             STORY & SANCTUARY
           </div>
-
-          {/* Main Headline */}
-          <h1 className="mt-6 text-3xl sm:text-5xl font-serif text-[#2D2522] font-semibold tracking-tight">
+          <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-serif text-[#2D2522] tracking-tight">
             Our Story: Live in a Jovular Mood
           </h1>
-
-          {/* Subtitle */}
-          <p className="mt-4 text-base sm:text-lg font-serif italic text-[#9B4A25]">
-            도심 속에서 찾은 유럽의 작은 파티오, 계절의 바람과 따사로운 햇살을 머금은 공간
-          </p>
-
-          {/* Paragraph */}
-          <p className="mt-8 text-sm sm:text-base text-[#665D56] leading-relaxed max-w-2xl mx-auto">
-            빌딩 숲을 벗어나 테라코타 벽돌길을 돌아서면 문득 열리는 따스한 유럽식 안뜰. 붉은 벽돌과 포근한 크림색 아이언 트렐리스, 햇살에 반짝이는 레몬 잎사귀 사이로 온전히 자신만의 숨을 고르는 다정한 여유를 전합니다.
+          <p className="mt-6 text-sm sm:text-base text-[#685E55] leading-relaxed max-w-2xl mx-auto font-sans font-light">
+            조블라는 유럽의 작은 마을 안뜰에서 영감을 받아 탄생한 파티오 카페입니다. 
+            붉은 벽돌과 포근한 햇살, 올리브 나무와 레몬 향기가 깃든 이곳에서 계절의 흐름을 느끼며 
+            한 잔의 스페셜티 커피와 함께 여유로운 시간을 음미해 보세요.
           </p>
         </div>
       </section>
 
-      {/* 3. Middle Section: Visual & Core Values */}
-      <section className="py-12 sm:py-16">
+      <section className="py-12 border-t border-[#EAE3D9]/70">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Image with Vignette & Sunlight Flora badge */}
-            <div className="lg:col-span-6 relative">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
-                {/* Image Frame */}
-                <div className="overflow-hidden rounded-3xl shadow-xl border-4 border-white/80 aspect-[4/5]">
-                  <img
-                    src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1000&q=80"
-                    alt="Cream Wrought Trellis & Sunlit Daisy Bloom"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-
-                {/* Top-Right Badge: Sunlight & Flora */}
+            <div className="lg:col-span-6">
+              <div className="relative rounded-3xl overflow-hidden shadow-lg aspect-[4/5] bg-[#EFE8DF]">
+                <img
+                  src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=80"
+                  alt="조블라 정원 테라스"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex flex-col items-center justify-center h-16 w-16 rounded-full bg-[#695D4A]/90 backdrop-blur-sm text-white text-[10px] text-center font-medium leading-tight shadow-md border border-white/20">
                   <span>Sunlight &</span>
                   <span>Flora</span>
                 </div>
-
-                {/* Bottom Floating Card: Courtyard Vignette */}
                 <div className="absolute -bottom-6 left-4 sm:left-6 right-4 sm:right-6 rounded-2xl bg-white/95 backdrop-blur-md px-5 py-3.5 shadow-lg border border-white/60">
                   <p className="text-[10px] font-semibold tracking-wider text-[#8C8075] uppercase">
                     COURTYARD VIGNETTE
@@ -126,7 +118,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Right: Core Values */}
             <div className="lg:col-span-6 flex flex-col items-start mt-6 lg:mt-0">
               <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
                 CORE VALUES
@@ -135,10 +126,9 @@ export default function AboutPage() {
                 파티오가 건네는 세 가지 온기
               </h2>
               <p className="mt-3 text-xs sm:text-sm text-[#736860] leading-relaxed">
-                조뷸러가 가꾸는 야외 테라스는 단순한 카페 좌석을 넘어, 바쁜 일상 한편에 쉼표를 찍는 안식처입니다.
+                조블라가 가꾸는 야외 테라스는 단순한 카페 좌석을 넘어, 바쁜 일상 한편에 쉼표를 찍는 안식처입니다.
               </p>
 
-              {/* 3 Core Value Cards */}
               <div className="mt-8 space-y-4 w-full">
                 {coreValues.map((val, idx) => {
                   const Icon = val.icon;
@@ -168,17 +158,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 4. Atmosphere Section: 조뷸러를 완성하는 세 가지 구역 */}
       <section className="py-20 border-t border-[#EAE3D9]/70">
         <div className="mx-auto max-w-6xl px-6">
-          {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
             <div>
               <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
                 ATMOSPHERE
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                조뷸러를 완성하는 세 가지 구역
+                조블라를 완성하는 세 가지 구역
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-[#736860] max-w-md leading-relaxed">
@@ -186,7 +174,6 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* 3 Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {threeZones.map((zone, i) => {
               const SubIcon = zone.icon;
@@ -230,44 +217,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* 5. Quote & Call to Action */}
-      <section className="py-16">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="relative rounded-3xl bg-[#F4EFEA] border border-[#DDD3C6] p-10 sm:p-14 text-center overflow-hidden">
-            <div className="flex justify-center mb-4">
-              <div className="p-3 rounded-full bg-white/80 text-[#9B4A25] shadow-sm">
-                <Coffee className="h-6 w-6" />
-              </div>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl font-serif font-medium text-[#2D2522] tracking-tight">
-              &ldquo;잠시 걸음을 멈추고, 깊은 숨을 내쉬어 보세요.&rdquo;
-            </h2>
-
-            <p className="mt-4 text-xs sm:text-sm text-[#736860] leading-relaxed max-w-md mx-auto">
-              커피 한 잔의 온도, 스쳐 지나가는 바람결, 따사로운 안뜰의 햇빛이<br />
-              지친 당신의 하루에 포근한 다정함을 선물합니다.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/#visit"
-                className="rounded-md bg-[#9B4A25] px-6 py-2.5 text-xs font-semibold text-white hover:bg-[#853C1B] transition-colors shadow-sm"
-              >
-                파티오 방문하기
-              </Link>
-              <Link
-                href="/#menu"
-                className="inline-flex items-center gap-1.5 rounded-md border border-[#D5C9BC] bg-white/70 px-5 py-2.5 text-xs font-medium text-[#4D423B] hover:bg-white transition-colors"
-              >
-                카페 이야기 더보기
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
+*/

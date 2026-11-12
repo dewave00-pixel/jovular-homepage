@@ -23,7 +23,7 @@ export default function LocationPage() {
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const address = "서울 마포구 와우산로 29마길 (조뷸러 Jovular)";
+  const address = "서울 마포구 와우산로 29마길 (조블라 Jovular)";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(address);
@@ -52,7 +52,7 @@ export default function LocationPage() {
                 Visit Jovular
               </h1>
               <p className="mt-3 text-xs sm:text-sm text-[#736860]">
-                햇살 가득한 조뷸러의 테라스로 당신을 초대합니다
+                햇살 가득한 조블라의 테라스로 당신을 초대합니다
               </p>
             </div>
 
@@ -83,7 +83,7 @@ export default function LocationPage() {
             <div className="lg:col-span-8 relative rounded-3xl overflow-hidden min-h-[340px] sm:min-h-[420px] shadow-md border border-[#ECE5DC]">
               <img
                 src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1400&q=80"
-                alt="따스한 햇살과 허브 향이 머무는 조뷸러 정원"
+                alt="따스한 햇살과 허브 향이 머무는 조블라 정원"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
@@ -91,7 +91,7 @@ export default function LocationPage() {
                   THE OUTDOOR TERRACE
                 </span>
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-white leading-snug">
-                  따스한 햇살과 허브 향이 머무는 조뷸러 정원
+                  따스한 햇살과 허브 향이 머무는 조블라 정원
                 </h3>
                 <p className="mt-2 text-xs sm:text-sm text-stone-200 max-w-xl leading-relaxed">
                   붉은 벽돌 벤치와 내추럴한 원목 테이블이 만들어내는 이국적인 야외테라스 공간입니다.
@@ -158,7 +158,7 @@ export default function LocationPage() {
                 <div className="mt-4 rounded-xl bg-[#FAF7F2] p-4 border border-[#ECE5DC] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div>
                     <p className="text-sm font-semibold text-[#2D2522]">
-                      서울 마포구 와우산로 29마길 (조뷸러 Jovular)
+                      서울 마포구 와우산로 29마길 (조블라 Jovular)
                     </p>
                     <p className="text-xs text-[#8C8075] mt-1">
                       햇살이 들어오는 골목 안쪽, 유럽풍 벽돌 테라스와 아이보리 철제 게이트
@@ -216,11 +216,11 @@ export default function LocationPage() {
                   <div className="mt-4 space-y-1.5 text-xs">
                     <div className="flex justify-between">
                       <span className="font-semibold text-[#2D2522]">월요일 – 일요일</span>
-                      <span className="text-[#665D56]">11:00 – 21:00</span>
+                      <span className="text-[#665D56]">09:00 – 24:00</span>
                     </div>
                     <div className="flex justify-between text-[#8C8075]">
                       <span>라스트 오더</span>
-                      <span>20:30</span>
+                      <span>23:30</span>
                     </div>
                   </div>
                   <p className="mt-4 text-[11px] text-[#A3968B] border-t border-[#F2ECE3] pt-3">
@@ -364,7 +364,7 @@ export default function LocationPage() {
         </div>
       </section>
 
-      {/* 5. Patio Etiquette (조뷸러 테라스 이용 안내) */}
+      {/* 5. Patio Etiquette (조블라 테라스 이용 안내) */}
       <section className="py-16 border-t border-[#EAE3D9]/70">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
@@ -373,7 +373,7 @@ export default function LocationPage() {
                 PATIO ETIQUETTE
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                조뷸러 테라스 이용 안내
+                조블라 테라스 이용 안내
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-[#736860] max-w-md leading-relaxed">
