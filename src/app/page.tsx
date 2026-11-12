@@ -63,7 +63,7 @@ export default function Home() {
     {
       title: "딸기케이크",
       subtitle: "Fresh Strawberry Cake",
-      price: "₩ 11,900",
+      price: "₩ 15,900",
       desc: "신선한 제철 생딸기와 부드러운 시트, 풍부한 동물성 생크림의 산뜻한 조화",
       tags: "Dessert • Seasonal Cake",
       image: "/images/cake_02.jpeg",

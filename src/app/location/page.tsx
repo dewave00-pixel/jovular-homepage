@@ -13,8 +13,6 @@ import {
   Wifi, 
   Sparkles, 
   Coffee, 
-  Umbrella, 
-  Camera, 
   HelpCircle,
   Sun,
   ExternalLink
@@ -361,73 +359,7 @@ export default function LocationPage() {
         </div>
       </section>
 
-      {/* 3. Patio Etiquette */}
-      <section className="py-12 border-t border-[#EAE3D9]/70">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <div>
-              <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
-                PATIO ETIQUETTE
-              </span>
-              <h2 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                조블라 매장 이용 안내
-              </h2>
-            </div>
-            <p className="text-xs sm:text-sm text-[#736860] max-w-md leading-relaxed">
-              모든 분들이 편안한 시간을 보내실 수 있도록 아래 내용을 확인해 주세요.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Rule 1 */}
-            <div className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="h-9 w-9 rounded-xl bg-[#FAF5EE] border border-[#DDD3C6] flex items-center justify-center text-[#9B4A25]">
-                  <Coffee className="h-4 w-4" />
-                </div>
-                <h3 className="mt-4 font-serif text-base font-bold text-[#2D2522]">
-                  01. 쾌적한 공간 이용
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-[#736860]">
-                  다른 손님들의 편안한 휴식을 위해 지나치게 큰 소리의 대화나 스피커폰 통화는 배려를 부탁드립니다.
-                </p>
-              </div>
-            </div>
-
-            {/* Rule 2 */}
-            <div className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="h-9 w-9 rounded-xl bg-[#FAF5EE] border border-[#DDD3C6] flex items-center justify-center text-[#9B4A25]">
-                  <Umbrella className="h-4 w-4" />
-                </div>
-                <h3 className="mt-4 font-serif text-base font-bold text-[#2D2522]">
-                  02. 우천 및 강풍 시 안내
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-[#736860]">
-                  비가 오거나 바람이 강한 날에는 안전을 위해 야외 테라스석 이용이 제한되며 실내 좌석으로 안내해 드립니다.
-                </p>
-              </div>
-            </div>
-
-            {/* Rule 3 */}
-            <div className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="h-9 w-9 rounded-xl bg-[#FAF5EE] border border-[#DDD3C6] flex items-center justify-center text-[#9B4A25]">
-                  <Camera className="h-4 w-4" />
-                </div>
-                <h3 className="mt-4 font-serif text-base font-bold text-[#2D2522]">
-                  03. 상업 촬영 사전 문의
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-[#736860]">
-                  쇼핑몰 룩북, 상업적 영상 촬영 등은 일반 이용객의 편의를 위해 사전 대관 문의 후 진행 가능합니다.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Quick Inquiries & Table Reservation */}
+      {/* 3. Quick Inquiries & Table Reservation */}
       <section className="pb-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="rounded-3xl bg-[#ECE4D8]/80 border border-[#DDD3C6] p-8 sm:p-12">
