@@ -42,13 +42,15 @@ export default function Home() {
       price: "₩ 8,900",
       desc: "고소한 견과류 풍미와 진한 다크 초콜릿, 쫀득한 수제 크림의 조화",
       tags: "Signature • Cream Coffee",
+      image: "/images/cream_01.jpeg",
     },
     {
-      title: "레몬버터크림라떼",
-      subtitle: "Lemon Butter Cream Latte",
+      title: "솔티카라멜크림라떼",
+      subtitle: "Salty Caramel Cream Latte",
       price: "₩ 8,900",
-      desc: "상큼한 레몬 제스트 향과 달콤하고 부드러운 버터크림이 어우러진 시그니처",
-      tags: "Signature • Sweet & Citrus",
+      desc: "단짠의 정석 수제 솔티 카라멜과 부드럽고 묵직한 크림이 어우러진 시그니처",
+      tags: "Signature • Salty Caramel",
+      image: "/images/cream_02.jpeg",
     },
     {
       title: "애플 고르곤졸라 치즈케이크",
@@ -56,13 +58,15 @@ export default function Home() {
       price: "₩ 13,900",
       desc: "진한 고르곤졸라 치즈의 풍미에 달콤한 수제 사과 콩포트를 얹은 치즈케이크",
       tags: "Dessert • House Special",
+      image: "/images/cake_01.png",
     },
     {
-      title: "바스크치즈케이크",
-      subtitle: "Basque Burnt Cheesecake",
+      title: "딸기케이크",
+      subtitle: "Fresh Strawberry Cake",
       price: "₩ 11,900",
-      desc: "고온에서 구워내 겉은 스모키하고 속은 촉촉하고 부드러운 정통 바스크 케이크",
-      tags: "Dessert • Daily Baked",
+      desc: "신선한 제철 생딸기와 부드러운 시트, 풍부한 동물성 생크림의 산뜻한 조화",
+      tags: "Dessert • Seasonal Cake",
+      image: "/images/cake_02.jpeg",
     },
   ];
 
@@ -231,7 +235,7 @@ export default function Home() {
               Signature Menu
             </h2>
             <p className="mt-3 text-xs sm:text-sm text-[#736860]">
-              조블라만의 시그니처 크림라떼와 직접 구워내는 수제 치즈케이크
+              조블라만의 시그니처 크림라떼와 직접 준비하는 수제 디저트
             </p>
           </div>
 
@@ -240,31 +244,42 @@ export default function Home() {
             {signatureMenus.map((item, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm flex flex-col justify-between hover:border-[#D5C9BC] hover:shadow-md transition-all group"
+                className="rounded-2xl bg-white overflow-hidden border border-[#ECE5DC] shadow-sm flex flex-col justify-between hover:border-[#D5C9BC] hover:shadow-md transition-all group"
               >
-                <div>
-                  <div className="flex items-baseline justify-between gap-3 pb-2.5 border-b border-[#F2ECE3]">
-                    <div>
-                      <h3 className="font-serif text-base sm:text-lg font-bold text-[#2D2522] group-hover:text-[#9B4A25] transition-colors">
-                        {item.title}
-                      </h3>
-                      {item.subtitle && (
-                        <span className="text-[11px] font-sans text-[#8C8075] font-normal block mt-0.5">
-                          {item.subtitle}
-                        </span>
-                      )}
-                    </div>
-                    <span className="font-serif text-base font-bold text-[#9B4A25] shrink-0">
-                      {item.price}
-                    </span>
+                {item.image && (
+                  <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#FAF5EE]">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
-                  <p className="mt-3 text-xs sm:text-sm text-[#736860] leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-                <div className="mt-4 pt-2 flex items-center justify-between text-[11px] font-medium text-[#998E84]">
-                  <span>{item.tags}</span>
-                  <span className="text-[#9B4A25] text-xs">✦</span>
+                )}
+                <div className="p-6 flex flex-col justify-between flex-1">
+                  <div>
+                    <div className="flex items-baseline justify-between gap-3 pb-2.5 border-b border-[#F2ECE3]">
+                      <div>
+                        <h3 className="font-serif text-base sm:text-lg font-bold text-[#2D2522] group-hover:text-[#9B4A25] transition-colors">
+                          {item.title}
+                        </h3>
+                        {item.subtitle && (
+                          <span className="text-[11px] font-sans text-[#8C8075] font-normal block mt-0.5">
+                            {item.subtitle}
+                          </span>
+                        )}
+                      </div>
+                      <span className="font-serif text-base font-bold text-[#9B4A25] shrink-0">
+                        {item.price}
+                      </span>
+                    </div>
+                    <p className="mt-3 text-xs sm:text-sm text-[#736860] leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-2 flex items-center justify-between text-[11px] font-medium text-[#998E84]">
+                    <span>{item.tags}</span>
+                    <span className="text-[#9B4A25] text-xs">✦</span>
+                  </div>
                 </div>
               </div>
             ))}
