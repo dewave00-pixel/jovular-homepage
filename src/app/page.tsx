@@ -35,28 +35,32 @@ export default function Home() {
 
   const signatureMenus = [
     {
-      title: "Jovular Cream Latte",
+      title: "너티초콜릿크림라떼",
+      subtitle: "Nutty Chocolate Cream Latte",
       price: "₩ 6,800",
-      desc: "견과류 풍미의 진한 에스프레소 위 부드럽게 얹어낸 아몬드크림 시그니처",
-      tags: "Signature • Hot / Iced",
+      desc: "고소한 견과류의 풍미와 진한 다크 초콜릿, 부드러운 수제 생크림이 조화를 이루는 시그니처 라떼",
+      tags: "Signature • Cream Coffee",
     },
     {
-      title: "Lemon Herb Ade",
-      price: "₩ 6,500",
-      desc: "직접 담근 레몬청과 생허브로 완성한 청량한 시그니처 에이드",
-      tags: "Seasonal • Fresh Herb",
+      title: "레몬버터크림라떼",
+      subtitle: "Lemon Butter Cream Latte",
+      price: "₩ 6,800",
+      desc: "싱그러운 레몬 향과 고소한 버터스카치 풍미의 크림이 에스프레소와 어우러진 조블라 대표 음료",
+      tags: "Signature • Sweet & Citrus",
     },
     {
-      title: "Homemade Citrus Tart",
-      price: "₩ 7,200",
-      desc: "바삭한 수제 파이 쉘에 상큼한 시트러스 커드를 채워 구워낸 계절 타르트",
-      tags: "Daily Baked • Limited",
+      title: "애플 고르곤졸라 치즈케이크",
+      subtitle: "Apple Gorgonzola Cheesecake",
+      price: "₩ 7,500",
+      desc: "깊은 풍미의 고르곤졸라 치즈에 향긋하고 달콤한 사과 콩포트를 더한 프리미엄 수제 케이크",
+      tags: "Dessert • House Special",
     },
     {
-      title: "Honey Butter Scone",
-      price: "₩ 5,000",
-      desc: "프랑스산 고메 버터와 천연 벌꿀을 곁들여 고소함과 달콤함이 살아있는 스콘",
-      tags: "Best Match with Coffee",
+      title: "바스크치즈케이크",
+      subtitle: "Basque Burnt Cheesecake",
+      price: "₩ 7,000",
+      desc: "고온에서 구워내 스모키한 캐러멜 향과 부드럽고 촉촉한 텍스처를 극대화한 클래식 바스크",
+      tags: "Dessert • Daily Baked",
     },
   ];
 
@@ -238,9 +242,16 @@ export default function Home() {
               >
                 <div>
                   <div className="flex items-baseline justify-between gap-3 pb-2.5 border-b border-[#F2ECE3]">
-                    <h3 className="font-serif text-base sm:text-lg font-bold text-[#2D2522] group-hover:text-[#9B4A25] transition-colors">
-                      {item.title}
-                    </h3>
+                    <div>
+                      <h3 className="font-serif text-base sm:text-lg font-bold text-[#2D2522] group-hover:text-[#9B4A25] transition-colors">
+                        {item.title}
+                      </h3>
+                      {item.subtitle && (
+                        <span className="text-[11px] font-sans text-[#8C8075] font-normal block mt-0.5">
+                          {item.subtitle}
+                        </span>
+                      )}
+                    </div>
                     <span className="font-serif text-base font-bold text-[#9B4A25] shrink-0">
                       {item.price}
                     </span>
