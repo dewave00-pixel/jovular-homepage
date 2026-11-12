@@ -88,7 +88,7 @@ export default function Home() {
 
               {/* Sub description */}
               <p className="mt-6 text-base sm:text-lg text-[#665D56] leading-relaxed max-w-md">
-                홍대 와우산로 골목 안쪽에 위치한 프라이빗 테라스 카페 조블라입니다.
+                홍대입구역 8번 출구 도보 2분, 어울마당로 골목 안쪽에 위치한 테라스 카페 조블라입니다.
               </p>
 
               {/* Feature icons */}
@@ -294,7 +294,7 @@ export default function Home() {
                 <Sun className="h-4 w-4 text-[#9B4A25]" />
                 <div className="leading-tight">
                   <span className="block font-semibold text-[#2D2522]">Terrace & Indoor</span>
-                  <span className="text-[10px] text-[#8C8075]">와우산로 골목 안쪽</span>
+                  <span className="text-[10px] text-[#8C8075]">홍대입구역 8번 출구 도보 2분</span>
                 </div>
               </div>
               <Link

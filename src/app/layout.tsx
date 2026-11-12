@@ -18,7 +18,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "조블라 | Cafe Jovular - 테라스 카페",
-  description: "홍대 와우산로 골목 안쪽에 위치한 프라이빗 테라스 카페 조블라(Jovular). 시그니처 크림라떼와 수제 디저트.",
+  description: "홍대입구역 8번 출구 도보 2분, 어울마당로 골목 안쪽에 위치한 테라스 카페 조블라(Jovular). 시그니처 크림라떼와 수제 디저트.",
 };
 
 export default function RootLayout({

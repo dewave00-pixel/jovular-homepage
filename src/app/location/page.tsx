@@ -16,14 +16,19 @@ import {
   Umbrella, 
   Camera, 
   HelpCircle,
-  Sun
+  Sun,
+  Instagram,
+  ExternalLink
 } from "lucide-react";
 
 export default function LocationPage() {
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const address = "서울 마포구 와우산로 29마길 (조블라 Jovular)";
+  const address = "서울 마포구 어울마당로 136-10 1층";
+  const naverMapUrl = "https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%B4%EC%9A%B8%EB%A7%88%EB%8B%B9%EB%A1%9C%20136-10";
+  const kakaoMapUrl = "https://map.kakao.com/link/search/%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%B4%EC%9A%B8%EB%A7%88%EB%8B%B9%EB%A1%9C%20136-10";
+  const googleMapUrl = "https://www.google.com/maps/search/?api=1&query=%EC%84%9C%EC%9A%B8+%EB%A7%88%ED%8F%AC%EA%B5%AC+%EC%96%B4%EC%9A%B8%EB%A7%88%EB%8B%B9%EB%A1%9C+136-10";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(address);
@@ -39,129 +44,61 @@ export default function LocationPage() {
 
   return (
     <>
-      {/* 2. Top Title Header */}
-      <section className="pt-14 pb-8 sm:pt-16 sm:pb-10">
+      {/* 1. Header (Compact & Clear) */}
+      <section className="pt-10 pb-6 sm:pt-14 sm:pb-8">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-1.5 rounded-full bg-[#ECE4D8] px-3.5 py-1 text-[11px] font-semibold tracking-wider text-[#685E55] uppercase">
-                <Sun className="h-3 w-3 text-[#9B4A25]" />
+                <MapPin className="h-3 w-3 text-[#9B4A25]" />
                 LOCATION & VISITING GUIDE
               </div>
-              <h1 className="mt-4 text-4xl sm:text-5xl font-serif text-[#2D2522]">
-                Visit Jovular
+              <h1 className="mt-3 text-3xl sm:text-4xl font-serif text-[#2D2522]">
+                오시는 길
               </h1>
-              <p className="mt-3 text-xs sm:text-sm text-[#736860]">
-                홍대 와우산로 골목 안쪽에 위치한 테라스 카페 조블라 오시는 길입니다.
+              <p className="mt-2 text-xs sm:text-sm text-[#736860]">
+                홍대입구역 8번 출구 도보 2분 거리에 위치한 테라스 카페 조블라(Jovular)입니다.
               </p>
             </div>
 
-            {/* Operating status badge */}
-            <div className="self-start md:self-end rounded-2xl bg-white/80 border border-[#ECE5DC] p-3 px-4 shadow-sm flex items-center gap-3">
-              <span className="flex h-2.5 w-2.5 relative">
+            <div className="self-start sm:self-auto rounded-xl bg-white/80 border border-[#ECE5DC] py-2 px-3.5 shadow-sm flex items-center gap-2.5">
+              <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <div>
-                <p className="text-xs font-semibold text-[#2D2522]">
-                  야외 테라스 & 실내 라운지 운영 중
-                </p>
-                <p className="text-[10px] text-[#8C8075]">
-                  편안한 테라스 좌석 이용 가능
-                </p>
-              </div>
+              <span className="text-xs font-semibold text-[#2D2522]">
+                09:00 – 24:00 (연중무휴)
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Hero Visual Section (2 Columns) */}
+      {/* 2. Main Location, Maps & Contact Grid */}
       <section className="pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            {/* Left Big Terrace Image */}
-            <div className="lg:col-span-8 relative rounded-3xl overflow-hidden min-h-[340px] sm:min-h-[420px] shadow-md border border-[#ECE5DC]">
-              <img
-                src="/images/terrace_01.jpg"
-                alt="조블라 야외 테라스 전경"
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
-                <span className="text-[10px] font-bold tracking-widest text-[#E5A83E] uppercase mb-1.5">
-                  THE TERRACE
-                </span>
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-white leading-snug">
-                  도심 속 프라이빗 야외 테라스
-                </h3>
-                <p className="mt-2 text-xs sm:text-sm text-stone-200 max-w-xl leading-relaxed">
-                  골목 안쪽 붉은 벽돌과 감각적인 테이블이 마련된 조블라의 대표 테라스 공간입니다.
-                </p>
-              </div>
-            </div>
-
-            {/* Right Vignette Card */}
-            <div className="lg:col-span-4 rounded-3xl bg-[#FAF5EE] border border-[#DDD3C6] p-7 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between">
-                  <div className="h-9 w-9 rounded-full bg-white border border-[#DDD3C6] flex items-center justify-center text-[#9B4A25] shadow-sm">
-                    <Coffee className="h-4 w-4" />
-                  </div>
-                  <span className="rounded-full bg-[#EFE8DF] px-3 py-1 text-[11px] font-medium text-[#736860]">
-                    Terrace & Coffee
-                  </span>
-                </div>
-
-                <h3 className="mt-6 text-xl font-serif font-bold text-[#2D2522]">
-                  조블라 공간 소개
-                </h3>
-                <p className="mt-3 text-xs leading-relaxed text-[#736860]">
-                  도심 골목 안쪽 한적한 야외 테라스와 아늑한 실내 라운지에서 커피와 디저트를 편안하게 즐기실 수 있습니다.
-                </p>
-              </div>
-
-              <div className="pt-6 border-t border-[#ECE5DC] mt-6 flex items-center gap-1.5 text-[10px] font-mono tracking-wider text-[#8C8075] uppercase">
-                <span>✦</span>
-                <span>Cafe Jovular Seoul</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Location & Map Section */}
-      <section className="py-12 border-t border-[#EAE3D9]/70">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left: Info Cards */}
-            <div className="lg:col-span-7 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Left: Address & Visiting Info (7 Cols) */}
+            <div className="lg:col-span-7 space-y-5">
               {/* Address Box */}
               <div className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-[#9B4A25] uppercase tracking-wider">
                     <MapPin className="h-3.5 w-3.5" />
-                    LOCATION
+                    ADDRESS
                   </div>
-                  <a
-                    href="https://map.naver.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1 rounded bg-[#03C75A] px-3 py-1 text-[11px] font-semibold text-white hover:bg-[#02b350] transition-colors"
-                  >
-                    N 네이버 지도 열기 ↗
-                  </a>
+                  <span className="text-[11px] font-medium text-[#8C8075]">
+                    조블라 Jovular 1F
+                  </span>
                 </div>
 
-                <h2 className="mt-3 text-2xl font-serif font-bold text-[#2D2522]">
-                  오시는 길
-                </h2>
-
-                <div className="mt-4 rounded-xl bg-[#FAF7F2] p-4 border border-[#ECE5DC] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="mt-3 rounded-xl bg-[#FAF7F2] p-4 border border-[#ECE5DC] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm font-semibold text-[#2D2522]">
-                      서울 마포구 와우산로 29마길 (조블라 Jovular)
+                    <p className="text-base font-semibold text-[#2D2522]">
+                      서울 마포구 어울마당로 136-10 1층
                     </p>
                     <p className="text-xs text-[#8C8075] mt-1">
-                      홍대입구역/산울림소극장 인근 골목 안쪽, 붉은 벽돌 테라스 입구로 들어오시면 됩니다.
+                      홍대입구역 8번 출구 도보 2분 (어울마당로 골목 안쪽)
                     </p>
                   </div>
                   <button
@@ -182,6 +119,43 @@ export default function LocationPage() {
                   </button>
                 </div>
 
+                {/* 3 Map Links (Google, Naver, Kakao only) */}
+                <div className="mt-4">
+                  <p className="text-[11px] font-semibold text-[#8C8075] mb-2 uppercase tracking-wider">
+                    MAP SERVICES
+                  </p>
+                  <div className="grid grid-cols-3 gap-2.5">
+                    <a
+                      href={naverMapUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-1.5 rounded-xl bg-[#03C75A] py-2.5 text-xs font-semibold text-white hover:bg-[#02b350] transition-colors shadow-sm"
+                    >
+                      <span>네이버지도</span>
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                    <a
+                      href={kakaoMapUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-1.5 rounded-xl bg-[#FEE500] py-2.5 text-xs font-semibold text-[#191919] hover:bg-[#f5dc00] transition-colors shadow-sm"
+                    >
+                      <span>카카오맵</span>
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                    <a
+                      href={googleMapUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center gap-1.5 rounded-xl bg-[#4285F4] py-2.5 text-xs font-semibold text-white hover:bg-[#3367d6] transition-colors shadow-sm"
+                    >
+                      <span>구글맵</span>
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Transit Details */}
                 <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#665D56]">
                   <div className="rounded-xl bg-[#FAF7F2] p-3.5 border border-[#ECE5DC]">
                     <div className="flex items-center gap-1.5 font-semibold text-[#2D2522] mb-1">
@@ -189,7 +163,7 @@ export default function LocationPage() {
                       지하철 이용 시
                     </div>
                     <p className="text-[11px] leading-relaxed text-[#736860]">
-                      홍대입구역 7번 출구 또는 서강대역 도보 6~8분 거리
+                      <strong className="text-[#2D2522]">홍대입구역 8번 출구 도보 2분</strong> (약 150m)
                     </p>
                   </div>
 
@@ -199,94 +173,106 @@ export default function LocationPage() {
                       주차 안내
                     </div>
                     <p className="text-[11px] leading-relaxed text-[#736860]">
-                      매장 전용 주차 불가 • 인근 동교동 공영주차장 이용 권장
+                      매장 전용 주차 불가 • 인근 공영주차장 이용 권장
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Hours & Contact Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* Hours */}
-                <div className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm">
+                <div className="rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm">
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-[#9B4A25] uppercase tracking-wider">
                     <Clock className="h-3.5 w-3.5" />
                     영업 시간
                   </div>
-                  <div className="mt-4 space-y-1.5 text-xs">
+                  <div className="mt-3.5 space-y-1.5 text-xs">
                     <div className="flex justify-between">
                       <span className="font-semibold text-[#2D2522]">월요일 – 일요일</span>
-                      <span className="text-[#665D56]">09:00 – 24:00</span>
+                      <span className="text-[#665D56] font-medium">09:00 – 24:00</span>
                     </div>
                     <div className="flex justify-between text-[#8C8075]">
                       <span>라스트 오더</span>
                       <span>23:30</span>
                     </div>
                   </div>
-                  <p className="mt-4 text-[11px] text-[#A3968B] border-t border-[#F2ECE3] pt-3">
-                    * 연중무휴 (휴무 변동 시 인스타그램 공지)
+                  <p className="mt-3 text-[11px] text-[#A3968B] border-t border-[#F2ECE3] pt-2.5">
+                    * 연중무휴 정상 영업합니다.
                   </p>
                 </div>
 
                 {/* Contact */}
-                <div className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm">
+                <div className="rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm">
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-[#9B4A25] uppercase tracking-wider">
                     <Phone className="h-3.5 w-3.5" />
                     문의 & 연락처
                   </div>
-                  <div className="mt-4 space-y-1.5 text-xs">
-                    <div className="flex justify-between">
-                      <span className="text-[#8C8075]">유선 문의</span>
-                      <span className="font-semibold text-[#2D2522]">02-332-4280</span>
+                  <div className="mt-3.5 space-y-2 text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#8C8075]">전화 문의</span>
+                      <a 
+                        href="tel:050713559243" 
+                        className="font-semibold text-[#2D2522] hover:text-[#9B4A25] transition-colors"
+                      >
+                        0507-1355-9243
+                      </a>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex items-center justify-between">
                       <span className="text-[#8C8075]">인스타그램</span>
-                      <span className="font-semibold text-[#9B4A25]">@jovular.mood</span>
+                      <a 
+                        href="https://www.instagram.com/jovular_cafe" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="font-semibold text-[#9B4A25] hover:underline inline-flex items-center gap-1"
+                      >
+                        <Instagram className="h-3 w-3" />
+                        @jovular_cafe
+                      </a>
                     </div>
                   </div>
-                  <p className="mt-4 text-[11px] text-[#A3968B] border-t border-[#F2ECE3] pt-3">
-                    대관 및 단체 예약은 DM으로 문의 가능합니다.
+                  <p className="mt-3 text-[11px] text-[#A3968B] border-t border-[#F2ECE3] pt-2.5">
+                    대관 및 단체 문의는 전화 또는 DM 문의 가능합니다.
                   </p>
                 </div>
               </div>
 
               {/* Amenities */}
-              <div className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm">
+              <div className="rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm">
                 <p className="text-[11px] font-semibold tracking-wider text-[#8C8075] uppercase mb-3">
-                  COURTYARD AMENITIES
+                  AMENITIES & FACILITIES
                 </p>
                 <div className="flex flex-wrap gap-2 text-xs text-[#5E534C]">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
-                    <Sparkles className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    포토존 & 가든 뷰
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
                     <Sun className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    단독 야외테라스
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
-                    <Wifi className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    고속 무선 인터넷 (Wi-Fi)
+                    야외 테라스
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
                     <Coffee className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    테라스 단체석 마련
+                    실내 라운지 좌석
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
+                    <Wifi className="h-3.5 w-3.5 text-[#9B4A25]" />
+                    고속 Wi-Fi
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
                     <Sparkles className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    콘센트 완비 (실내석)
+                    단체석 완비
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Right: Map Graphic Box */}
+            {/* Right: Map Box & Simple Guide (5 Cols) */}
             <div className="lg:col-span-5 rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between text-xs text-[#736860] mb-3">
-                  <span className="flex items-center gap-1 font-medium">
-                    <Sun className="h-3.5 w-3.5 text-[#C26B38]" />
-                    햇살 채광 우수 • 서향 테라스
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <MapPin className="h-3.5 w-3.5 text-[#9B4A25]" />
+                    위치 미리보기
+                  </span>
+                  <span className="text-[11px] text-[#8C8075]">
+                    홍대입구역 8번 출구 도보 2분
                   </span>
                 </div>
 
@@ -301,7 +287,7 @@ export default function LocationPage() {
                     </defs>
                     <rect width="100%" height="100%" fill="#E3EDE4" />
                     <rect width="100%" height="100%" fill="url(#grid)" opacity="0.6" />
-                    {/* Simulated Han River line */}
+                    {/* Simulated Han River / Line paths */}
                     <path d="M-20 180 Q 80 140 180 190 T 360 210 T 500 230" fill="none" stroke="#B8D6E8" strokeWidth="24" opacity="0.7" />
                     {/* Road paths */}
                     <path d="M 40 -10 L 160 300" stroke="#FFFFFF" strokeWidth="6" />
@@ -309,54 +295,62 @@ export default function LocationPage() {
                     <path d="M 120 -10 L 320 280" stroke="#FFFFFF" strokeWidth="5" />
                   </svg>
 
-                  {/* Marker Pin: jovular patio */}
+                  {/* Marker Pin: 조블라 */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
                     <div className="rounded-full bg-[#9B4A25] text-white p-2 shadow-lg border-2 border-white animate-bounce">
                       <Coffee className="h-4 w-4" />
                     </div>
                     <div className="mt-1 rounded-md bg-[#9B4A25] px-2.5 py-1 text-[11px] font-bold text-white shadow-md">
-                      jovular patio
+                      조블라 Jovular
                     </div>
                   </div>
 
                   {/* Neighbor labels */}
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] font-bold text-[#4A3F38]">
-                    연남동 • 경의선숲길
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-bold text-[#4A3F38] shadow-sm">
+                    홍대입구역 8번 출구
                   </div>
-                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] font-bold text-[#4A3F38]">
-                    와우산로 29마길
+                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-bold text-[#4A3F38] shadow-sm">
+                    어울마당로 136-10 1층
                   </div>
                 </div>
 
-                {/* Map App Links */}
-                <div className="mt-4 grid grid-cols-2 gap-3">
+                {/* Map Quick Links */}
+                <div className="mt-4 grid grid-cols-3 gap-2">
                   <a
-                    href="https://map.naver.com"
+                    href={naverMapUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-center gap-1.5 rounded-xl bg-[#03C75A] py-3 text-xs font-semibold text-white hover:bg-[#02b350] transition-colors shadow-sm"
+                    className="flex items-center justify-center gap-1 rounded-xl bg-[#03C75A] py-2.5 text-xs font-semibold text-white hover:bg-[#02b350] transition-colors shadow-sm"
                   >
-                    <span className="font-bold">N</span> 네이버지도
+                    네이버지도 ↗
                   </a>
                   <a
-                    href="https://map.kakao.com"
+                    href={kakaoMapUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-center gap-1.5 rounded-xl bg-[#FEE500] py-3 text-xs font-semibold text-[#191919] hover:bg-[#f5dc00] transition-colors shadow-sm"
+                    className="flex items-center justify-center gap-1 rounded-xl bg-[#FEE500] py-2.5 text-xs font-semibold text-[#191919] hover:bg-[#f5dc00] transition-colors shadow-sm"
                   >
-                    <span className="font-bold">kakaomap</span> 카카오맵 길찾기
+                    카카오맵 ↗
+                  </a>
+                  <a
+                    href={googleMapUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-1 rounded-xl bg-[#4285F4] py-2.5 text-xs font-semibold text-white hover:bg-[#3367d6] transition-colors shadow-sm"
+                  >
+                    구글맵 ↗
                   </a>
                 </div>
               </div>
 
-              {/* Little tip */}
+              {/* Wayfinding Tip */}
               <div className="mt-5 rounded-xl bg-[#FAF7F2] p-4 border border-[#ECE5DC]">
                 <p className="text-xs font-semibold text-[#2D2522] flex items-center gap-1.5">
                   <HelpCircle className="h-3.5 w-3.5 text-[#9B4A25]" />
-                  찾아오시는 작은 팁
+                  찾아오시는 길 안내
                 </p>
                 <p className="mt-1 text-[11px] leading-relaxed text-[#736860]">
-                  골목 초입에서 연노란색 크림 톤 외벽과 적벽돌 담장이 보이는 안쪽 마당으로 걸어 들어오시면 됩니다.
+                  홍대입구역 8번 출구로 나와 어울마당로 방향 골목 안쪽으로 약 2분 걸어오시면 1층 조블라 테라스 입구를 찾으실 수 있습니다.
                 </p>
               </div>
             </div>
@@ -364,20 +358,20 @@ export default function LocationPage() {
         </div>
       </section>
 
-      {/* 5. Patio Etiquette (조블라 테라스 이용 안내) */}
-      <section className="py-16 border-t border-[#EAE3D9]/70">
+      {/* 3. Patio Etiquette */}
+      <section className="py-12 border-t border-[#EAE3D9]/70">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
               <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
                 PATIO ETIQUETTE
               </span>
               <h2 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                조블라 테라스 이용 안내
+                조블라 매장 이용 안내
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-[#736860] max-w-md leading-relaxed">
-              방문해 주시는 모든 분들이 편안한 시간을 보내실 수 있도록 안내사항을 확인해 주세요.
+              모든 분들이 편안한 시간을 보내실 수 있도록 아래 내용을 확인해 주세요.
             </p>
           </div>
 
@@ -407,7 +401,7 @@ export default function LocationPage() {
                   02. 우천 및 강풍 시 안내
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-[#736860]">
-                  비가 오거나 바람이 많이 부는 날에는 안전을 위해 야외 테라스 이용이 제한되며 실내 좌석으로 안내해 드립니다.
+                  비가 오거나 바람이 강한 날에는 안전을 위해 야외 테라스석 이용이 제한되며 실내 좌석으로 안내해 드립니다.
                 </p>
               </div>
             </div>
@@ -430,7 +424,7 @@ export default function LocationPage() {
         </div>
       </section>
 
-      {/* 6. Quick Inquiries & Table Reservation */}
+      {/* 4. Quick Inquiries & Table Reservation */}
       <section className="pb-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="rounded-3xl bg-[#ECE4D8]/80 border border-[#DDD3C6] p-8 sm:p-12">
@@ -441,10 +435,10 @@ export default function LocationPage() {
                   QUICK INQUIRIES & RESERVATION
                 </span>
                 <h2 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                  테라스 대관 및 단체 문의
+                  단체 및 공간 대관 문의
                 </h2>
                 <p className="mt-3 text-xs sm:text-sm text-[#665D56] leading-relaxed">
-                  단체 모임, 테라스 공간 대관 및 촬영 문의는 아래 양식이나 인스타그램 DM으로 편하게 연락해 주세요.
+                  단체 모임, 공간 대관 및 촬영 문의는 아래 양식이나 인스타그램 DM (@jovular_cafe), 전화(0507-1355-9243)로 편하게 연락해 주세요.
                 </p>
 
                 <div className="mt-6 space-y-2 text-xs text-[#5E534C]">
@@ -454,7 +448,7 @@ export default function LocationPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#9B4A25]" />
-                    <span>평일 단체 예약 가능</span>
+                    <span>평일 단체 예약 및 대관 가능</span>
                   </div>
                 </div>
               </div>
@@ -506,8 +500,8 @@ export default function LocationPage() {
                         className="w-full rounded-xl bg-[#FAF7F2] border border-[#DDD3C6] px-3.5 py-2.5 text-xs text-[#2D2522] focus:outline-none focus:ring-1 focus:ring-[#9B4A25]"
                       >
                         <option>야외 테라스 단체석 문의</option>
-                        <option>평일 전체 공간 대관</option>
-                        <option>원두 납품 및 케이터링</option>
+                        <option>전체 공간 대관 문의</option>
+                        <option>촬영 및 케이터링 문의</option>
                         <option>기타 문의</option>
                       </select>
                     </div>
