@@ -11,25 +11,25 @@ import {
 export default function Home() {
   const threePieces = [
     {
-      title: "Sunlit Patio",
-      badge: "야외테라스",
+      title: "The Terrace",
+      badge: "야외 테라스",
       badgeColor: "bg-[#EBF0E6] text-[#486338]",
       desc: "야외 테라스의 부드러운 바람과 따뜻한 햇살 아래, 느긋하게 흐르는 일상의 휴식.",
-      img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+      img: "/images/terrace_02.jpg",
     },
     {
-      title: "Artisanal Coffee & Dessert",
-      badge: "수제 디저트",
+      title: "Indoor Lounge",
+      badge: "실내 라운지",
       badgeColor: "bg-[#F9ECE7] text-[#9E5336]",
-      desc: "매일 아침 직접 굽는 디저트와 깊은 풍미를 지닌 시그니처 블렌드의 완벽한 조화.",
-      img: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80",
+      desc: "붉은 벽돌과 포근한 조명이 어우러진 아늑하고 고요한 실내 휴식 공간.",
+      img: "/images/indoor_01.jpg",
     },
     {
-      title: "Quiet Moments",
-      badge: "도심 속 쉼터",
+      title: "Courtyard Patio",
+      badge: "안뜰 테라스",
       badgeColor: "bg-[#F2ECE3] text-[#7A6B56]",
-      desc: "번잡한 도심 한 켠에서 만나는 감각적인 안식처, 책 한 권과 함께하는 평온한 머무름.",
-      img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80",
+      desc: "도심 속 숨겨진 안뜰, 도란도란 나누는 대화와 커피 한 잔의 여유.",
+      img: "/images/terrace_03.jpg",
     },
   ];
 
@@ -39,28 +39,24 @@ export default function Home() {
       price: "₩ 6,800",
       desc: "견과류 풍미의 진한 에스프레소 위 부드럽게 얹어낸 아몬드크림 시그니처",
       tags: "Signature • Hot / Iced",
-      img: "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=300&q=80",
     },
     {
       title: "Lemon Herb Ade",
       price: "₩ 6,500",
-      desc: "마당에서 채취한 생로즈마리와 직접 담근 레몬청으로 완성한 청량한 에이드",
+      desc: "직접 담근 레몬청과 생허브로 완성한 청량한 시그니처 에이드",
       tags: "Seasonal • Fresh Herb",
-      img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=300&q=80",
     },
     {
       title: "Homemade Citrus Tart",
       price: "₩ 7,200",
       desc: "바삭한 수제 파이 쉘에 상큼한 시트러스 커드를 채워 구워낸 계절 타르트",
       tags: "Daily Baked • Limited",
-      img: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=300&q=80",
     },
     {
       title: "Honey Butter Scone",
       price: "₩ 5,000",
       desc: "프랑스산 고메 버터와 천연 벌꿀을 곁들여 고소함과 달콤함이 살아있는 스콘",
       tags: "Best Match with Coffee",
-      img: "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=300&q=80",
     },
   ];
 
@@ -131,8 +127,8 @@ export default function Home() {
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 <div className="overflow-hidden rounded-3xl shadow-xl border-4 border-white/80 aspect-[4/3] sm:aspect-[1.15/1]">
                   <img
-                    src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=80"
-                    alt="Jovular Patio and Courtyard"
+                    src="/images/terrace_01.jpg"
+                    alt="조블라 야외 테라스 전경"
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -238,30 +234,24 @@ export default function Home() {
             {signatureMenus.map((item, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm flex items-center gap-5 hover:border-[#D5C9BC] transition-colors"
+                className="rounded-2xl bg-white p-6 border border-[#ECE5DC] shadow-sm flex flex-col justify-between hover:border-[#D5C9BC] hover:shadow-md transition-all group"
               >
-                <div className="h-20 w-20 sm:h-24 sm:w-24 shrink-0 overflow-hidden rounded-xl bg-[#EFE8DF]">
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline justify-between gap-2">
-                    <h3 className="font-serif text-base font-semibold text-[#2D2522] truncate">
+                <div>
+                  <div className="flex items-baseline justify-between gap-3 pb-2.5 border-b border-[#F2ECE3]">
+                    <h3 className="font-serif text-base sm:text-lg font-bold text-[#2D2522] group-hover:text-[#9B4A25] transition-colors">
                       {item.title}
                     </h3>
-                    <span className="font-serif text-sm font-bold text-[#9B4A25] shrink-0">
+                    <span className="font-serif text-base font-bold text-[#9B4A25] shrink-0">
                       {item.price}
                     </span>
                   </div>
-                  <p className="mt-1.5 text-xs text-[#736860] line-clamp-2 leading-relaxed">
+                  <p className="mt-3 text-xs sm:text-sm text-[#736860] leading-relaxed">
                     {item.desc}
                   </p>
-                  <p className="mt-2.5 text-[11px] font-medium text-[#998E84]">
-                    {item.tags}
-                  </p>
+                </div>
+                <div className="mt-4 pt-2 flex items-center justify-between text-[11px] font-medium text-[#998E84]">
+                  <span>{item.tags}</span>
+                  <span className="text-[#9B4A25] text-xs">✦</span>
                 </div>
               </div>
             ))}

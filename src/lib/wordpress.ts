@@ -64,7 +64,7 @@ export async function getWordPressPosts(): Promise<WordPressPost[]> {
         title: stripHtml(post.title?.rendered || "무제"),
         excerpt: stripHtml(post.excerpt?.rendered || ""),
         content: post.content?.rendered || "",
-        featuredImage: featuredMedia || "https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=800&q=80",
+        featuredImage: featuredMedia || "/images/terrace_01.jpg",
         category: categoryName === "Uncategorized" ? "Terrace Notes" : categoryName,
         authorName: author,
       };

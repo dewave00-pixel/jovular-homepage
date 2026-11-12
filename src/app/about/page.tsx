@@ -51,7 +51,7 @@ export function AboutPageContent() {
       title: "The Terrace",
       desc: "햇빛과 바람을 즐기는 야외 좌석. 목재 벤치와 따뜻한 조명 아래서 편안한 대화를 나누는 시그니처 공간입니다.",
       linkText: "테라스 이용 가이드 →",
-      img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+      img: "/images/terrace_02.jpg",
     },
     {
       badge: "Citrus Aroma",
@@ -60,7 +60,7 @@ export function AboutPageContent() {
       title: "The Lemon Garden",
       desc: "시트러스 향기가 감도는 소담한 정원. 아기자기한 레몬 열매와 야생화가 선사하는 싱그러운 생명력을 마주하세요.",
       linkText: "보태니컬 갤러리 →",
-      img: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80",
+      img: "/images/terrace_03.jpg",
     },
     {
       badge: "Quiet Retreat",
@@ -69,7 +69,7 @@ export function AboutPageContent() {
       title: "The Brick Lounge",
       desc: "붉은 벽돌과 원목 인테리어가 주는 포근함 속에서 조용히 책을 읽거나 잔잔한 음악과 함께 여유를 즐길 수 있는 실내 라운지입니다.",
       linkText: "라운지 공간 둘러보기 →",
-      img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80",
+      img: "/images/indoor_01.jpg",
     },
   ];
 
@@ -98,7 +98,7 @@ export function AboutPageContent() {
             <div className="lg:col-span-6">
               <div className="relative rounded-3xl overflow-hidden shadow-lg aspect-[4/5] bg-[#EFE8DF]">
                 <img
-                  src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=80"
+                  src="/images/terrace_01.jpg"
                   alt="조블라 정원 테라스"
                   className="h-full w-full object-cover"
                 />

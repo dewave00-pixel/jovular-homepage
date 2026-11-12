@@ -82,7 +82,7 @@ export default function LocationPage() {
             {/* Left Big Terrace Image */}
             <div className="lg:col-span-8 relative rounded-3xl overflow-hidden min-h-[340px] sm:min-h-[420px] shadow-md border border-[#ECE5DC]">
               <img
-                src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1400&q=80"
+                src="/images/terrace_01.jpg"
                 alt="따스한 햇살과 허브 향이 머무는 조블라 정원"
                 className="h-full w-full object-cover"
               />
