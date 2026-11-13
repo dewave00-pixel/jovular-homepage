@@ -17,12 +17,19 @@ import {
   Sun,
   ExternalLink
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function LocationPage() {
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { lang } = useLanguage();
+  const t = translations[lang];
 
-  const address = "서울 마포구 어울마당로 136-10 1층";
+  const address = lang === "ko" 
+    ? "서울 마포구 어울마당로 136-10 1층" 
+    : "1F, 136-10 Eoulmadang-ro, Mapo-gu, Seoul";
+
   const naverMapUrl = "https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%B4%EC%9A%B8%EB%A7%88%EB%8B%B9%EB%A1%9C%20136-10";
   const kakaoMapUrl = "https://map.kakao.com/link/search/%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%B4%EC%9A%B8%EB%A7%88%EB%8B%B9%EB%A1%9C%20136-10";
   const googleMapUrl = "https://www.google.com/maps/search/?api=1&query=%EC%84%9C%EC%9A%B8+%EB%A7%88%ED%8F%AC%EA%B5%AC+%EC%96%B4%EC%9A%B8%EB%A7%88%EB%8B%B9%EB%A1%9C+136-10";
@@ -48,13 +55,13 @@ export default function LocationPage() {
             <div>
               <div className="inline-flex items-center gap-1.5 rounded-full bg-[#ECE4D8] px-3.5 py-1 text-[11px] font-semibold tracking-wider text-[#685E55] uppercase">
                 <MapPin className="h-3 w-3 text-[#9B4A25]" />
-                LOCATION & VISITING GUIDE
+                {t.location.guideBadge}
               </div>
               <h1 className="mt-3 text-3xl sm:text-4xl font-serif text-[#2D2522]">
-                오시는 길
+                {t.location.title}
               </h1>
               <p className="mt-2 text-xs sm:text-sm text-[#736860]">
-                홍대입구역 8번 출구 도보 2분 거리에 위치한 테라스 카페 조블라(Jovular)입니다.
+                {t.location.subtitle}
               </p>
             </div>
 
@@ -64,7 +71,7 @@ export default function LocationPage() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               <span className="text-xs font-semibold text-[#2D2522]">
-                09:00 – 24:00 (연중무휴)
+                {t.location.status}
               </span>
             </div>
           </div>
@@ -82,20 +89,20 @@ export default function LocationPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-[#9B4A25] uppercase tracking-wider">
                     <MapPin className="h-3.5 w-3.5" />
-                    ADDRESS
+                    {t.location.addressTitle}
                   </div>
                   <span className="text-[11px] font-medium text-[#8C8075]">
-                    조블라 Jovular 1F
+                    {t.location.storeName}
                   </span>
                 </div>
 
                 <div className="mt-3 rounded-xl bg-[#FAF7F2] p-4 border border-[#ECE5DC] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div>
                     <p className="text-base font-semibold text-[#2D2522]">
-                      서울 마포구 어울마당로 136-10 1층
+                      {t.location.addressText}
                     </p>
                     <p className="text-xs text-[#8C8075] mt-1">
-                      홍대입구역 8번 출구 도보 2분 (어울마당로 골목 안쪽)
+                      {t.location.addressSub}
                     </p>
                   </div>
                   <button
@@ -105,12 +112,12 @@ export default function LocationPage() {
                     {copied ? (
                       <>
                         <Check className="h-3.5 w-3.5 text-emerald-600" />
-                        <span className="text-emerald-700">복사 완료</span>
+                        <span className="text-emerald-700">{t.location.copied}</span>
                       </>
                     ) : (
                       <>
                         <Copy className="h-3.5 w-3.5 text-[#8C8075]" />
-                        <span>주소 복사</span>
+                        <span>{t.location.copyBtn}</span>
                       </>
                     )}
                   </button>
@@ -119,7 +126,7 @@ export default function LocationPage() {
                 {/* 3 Map Links (Google, Naver, Kakao only) */}
                 <div className="mt-4">
                   <p className="text-[11px] font-semibold text-[#8C8075] mb-2 uppercase tracking-wider">
-                    MAP SERVICES
+                    {t.location.mapServices}
                   </p>
                   <div className="grid grid-cols-3 gap-2.5">
                     <a
@@ -128,7 +135,7 @@ export default function LocationPage() {
                       rel="noreferrer"
                       className="flex items-center justify-center gap-1.5 rounded-xl bg-[#03C75A] py-2.5 text-xs font-semibold text-white hover:bg-[#02b350] transition-colors shadow-sm"
                     >
-                      <span>네이버지도</span>
+                      <span>{t.location.naverMap}</span>
                       <ExternalLink className="h-3 w-3" />
                     </a>
                     <a
@@ -137,7 +144,7 @@ export default function LocationPage() {
                       rel="noreferrer"
                       className="flex items-center justify-center gap-1.5 rounded-xl bg-[#FEE500] py-2.5 text-xs font-semibold text-[#191919] hover:bg-[#f5dc00] transition-colors shadow-sm"
                     >
-                      <span>카카오맵</span>
+                      <span>{t.location.kakaoMap}</span>
                       <ExternalLink className="h-3 w-3" />
                     </a>
                     <a
@@ -146,7 +153,7 @@ export default function LocationPage() {
                       rel="noreferrer"
                       className="flex items-center justify-center gap-1.5 rounded-xl bg-[#4285F4] py-2.5 text-xs font-semibold text-white hover:bg-[#3367d6] transition-colors shadow-sm"
                     >
-                      <span>구글맵</span>
+                      <span>{t.location.googleMap}</span>
                       <ExternalLink className="h-3 w-3" />
                     </a>
                   </div>
@@ -157,20 +164,23 @@ export default function LocationPage() {
                   <div className="rounded-xl bg-[#FAF7F2] p-3.5 border border-[#ECE5DC]">
                     <div className="flex items-center gap-1.5 font-semibold text-[#2D2522] mb-1">
                       <Train className="h-3.5 w-3.5 text-[#9B4A25]" />
-                      지하철 이용 시
+                      {t.location.subwayTitle}
                     </div>
                     <p className="text-[11px] leading-relaxed text-[#736860]">
-                      <strong className="text-[#2D2522]">홍대입구역 8번 출구 도보 2분</strong> (약 150m)
+                      <strong className="text-[#2D2522]">{t.location.subwayDesc}</strong>
+                    </p>
+                    <p className="text-[10px] text-[#A3968B] mt-0.5">
+                      {t.location.subwayLines}
                     </p>
                   </div>
 
                   <div className="rounded-xl bg-[#FAF7F2] p-3.5 border border-[#ECE5DC]">
                     <div className="flex items-center gap-1.5 font-semibold text-[#2D2522] mb-1">
                       <Car className="h-3.5 w-3.5 text-[#9B4A25]" />
-                      주차 안내
+                      {t.location.parkingTitle}
                     </div>
                     <p className="text-[11px] leading-relaxed text-[#736860]">
-                      매장 전용 주차 불가 • 인근 공영주차장 이용 권장
+                      {t.location.parkingDesc}
                     </p>
                   </div>
                 </div>
@@ -182,20 +192,20 @@ export default function LocationPage() {
                 <div className="rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm">
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-[#9B4A25] uppercase tracking-wider">
                     <Clock className="h-3.5 w-3.5" />
-                    영업 시간
+                    {t.location.hoursTitle}
                   </div>
                   <div className="mt-3.5 space-y-1.5 text-xs">
                     <div className="flex justify-between">
-                      <span className="font-semibold text-[#2D2522]">월요일 – 일요일</span>
-                      <span className="text-[#665D56] font-medium">09:00 – 24:00</span>
+                      <span className="font-semibold text-[#2D2522]">{t.location.monSun}</span>
+                      <span className="text-[#665D56] font-medium">{t.location.hoursTime}</span>
                     </div>
                     <div className="flex justify-between text-[#8C8075]">
-                      <span>라스트 오더</span>
+                      <span>{t.location.lastOrder}</span>
                       <span>23:30</span>
                     </div>
                   </div>
                   <p className="mt-3 text-[11px] text-[#A3968B] border-t border-[#F2ECE3] pt-2.5">
-                    * 연중무휴 정상 영업합니다.
+                    {t.location.hoursNote}
                   </p>
                 </div>
 
@@ -203,11 +213,11 @@ export default function LocationPage() {
                 <div className="rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm">
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-[#9B4A25] uppercase tracking-wider">
                     <Phone className="h-3.5 w-3.5" />
-                    문의 & 연락처
+                    {t.location.contactTitle}
                   </div>
                   <div className="mt-3.5 space-y-2 text-xs">
                     <div className="flex items-center justify-between">
-                      <span className="text-[#8C8075]">전화 문의</span>
+                      <span className="text-[#8C8075]">{t.location.phone}</span>
                       <a 
                         href="tel:050713559243" 
                         className="font-semibold text-[#2D2522] hover:text-[#9B4A25] transition-colors"
@@ -216,7 +226,7 @@ export default function LocationPage() {
                       </a>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-[#8C8075]">인스타그램</span>
+                      <span className="text-[#8C8075]">{t.location.instagram}</span>
                       <a 
                         href="https://www.instagram.com/jovular_cafe" 
                         target="_blank" 
@@ -233,7 +243,7 @@ export default function LocationPage() {
                     </div>
                   </div>
                   <p className="mt-3 text-[11px] text-[#A3968B] border-t border-[#F2ECE3] pt-2.5">
-                    대관 및 단체 문의는 전화 또는 DM 문의 가능합니다.
+                    {t.location.contactNote}
                   </p>
                 </div>
               </div>
@@ -241,24 +251,24 @@ export default function LocationPage() {
               {/* Amenities */}
               <div className="rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm">
                 <p className="text-[11px] font-semibold tracking-wider text-[#8C8075] uppercase mb-3">
-                  AMENITIES & FACILITIES
+                  {t.location.amenities}
                 </p>
                 <div className="flex flex-wrap gap-2 text-xs text-[#5E534C]">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
                     <Sun className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    야외 테라스
+                    {t.location.amenity1}
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
                     <Coffee className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    실내 라운지 좌석
+                    {t.location.amenity2}
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
                     <Wifi className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    고속 Wi-Fi
+                    {t.location.amenity3}
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAF5EE] border border-[#ECE5DC] px-3.5 py-1.5">
                     <Sparkles className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    단체석 완비
+                    {t.location.amenity4}
                   </span>
                 </div>
               </div>
@@ -270,10 +280,10 @@ export default function LocationPage() {
                 <div className="flex items-center justify-between text-xs text-[#736860] mb-3">
                   <span className="flex items-center gap-1.5 font-medium">
                     <MapPin className="h-3.5 w-3.5 text-[#9B4A25]" />
-                    위치 미리보기
+                    {t.location.mapPreview}
                   </span>
                   <span className="text-[11px] text-[#8C8075]">
-                    홍대입구역 8번 출구 도보 2분
+                    {t.location.mapNearStation}
                   </span>
                 </div>
 
@@ -308,10 +318,10 @@ export default function LocationPage() {
 
                   {/* Neighbor labels */}
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-bold text-[#4A3F38] shadow-sm">
-                    홍대입구역 8번 출구
+                    {t.location.mapNearStation}
                   </div>
                   <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded text-[10px] font-bold text-[#4A3F38] shadow-sm">
-                    어울마당로 136-10 1층
+                    {t.location.mapNearAddress}
                   </div>
                 </div>
 
@@ -323,7 +333,7 @@ export default function LocationPage() {
                     rel="noreferrer"
                     className="flex items-center justify-center gap-1 rounded-xl bg-[#03C75A] py-2.5 text-xs font-semibold text-white hover:bg-[#02b350] transition-colors shadow-sm"
                   >
-                    네이버지도 ↗
+                    {t.location.naverMap} ↗
                   </a>
                   <a
                     href={kakaoMapUrl}
@@ -331,7 +341,7 @@ export default function LocationPage() {
                     rel="noreferrer"
                     className="flex items-center justify-center gap-1 rounded-xl bg-[#FEE500] py-2.5 text-xs font-semibold text-[#191919] hover:bg-[#f5dc00] transition-colors shadow-sm"
                   >
-                    카카오맵 ↗
+                    {t.location.kakaoMap} ↗
                   </a>
                   <a
                     href={googleMapUrl}
@@ -339,7 +349,7 @@ export default function LocationPage() {
                     rel="noreferrer"
                     className="flex items-center justify-center gap-1 rounded-xl bg-[#4285F4] py-2.5 text-xs font-semibold text-white hover:bg-[#3367d6] transition-colors shadow-sm"
                   >
-                    구글맵 ↗
+                    {t.location.googleMap} ↗
                   </a>
                 </div>
               </div>
@@ -348,10 +358,10 @@ export default function LocationPage() {
               <div className="mt-5 rounded-xl bg-[#FAF7F2] p-4 border border-[#ECE5DC]">
                 <p className="text-xs font-semibold text-[#2D2522] flex items-center gap-1.5">
                   <HelpCircle className="h-3.5 w-3.5 text-[#9B4A25]" />
-                  찾아오시는 길 안내
+                  {t.location.wayfindingTitle}
                 </p>
                 <p className="mt-1 text-[11px] leading-relaxed text-[#736860]">
-                  홍대입구역 8번 출구로 나와 어울마당로 방향 골목 안쪽으로 약 2분 걸어오시면 1층 조블라 테라스 입구를 찾으실 수 있습니다.
+                  {t.location.wayfindingDesc}
                 </p>
               </div>
             </div>
@@ -367,23 +377,23 @@ export default function LocationPage() {
               {/* Left Info */}
               <div className="lg:col-span-5">
                 <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
-                  QUICK INQUIRIES & RESERVATION
+                  {t.location.inquiryBadge}
                 </span>
                 <h2 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                  단체 및 공간 대관 문의
+                  {t.location.inquiryTitle}
                 </h2>
                 <p className="mt-3 text-xs sm:text-sm text-[#665D56] leading-relaxed">
-                  단체 모임, 공간 대관 및 촬영 문의는 아래 양식이나 인스타그램 DM (@jovular_cafe), 전화(0507-1355-9243)로 편하게 연락해 주세요.
+                  {t.location.inquiryDesc}
                 </p>
 
                 <div className="mt-6 space-y-2 text-xs text-[#5E534C]">
                   <div className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#9B4A25]" />
-                    <span>당일 테라스석은 워크인 우선</span>
+                    <span>{t.location.inquiryPoint1}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#9B4A25]" />
-                    <span>평일 단체 예약 및 대관 가능</span>
+                    <span>{t.location.inquiryPoint2}</span>
                   </div>
                 </div>
               </div>
@@ -394,18 +404,18 @@ export default function LocationPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[11px] font-semibold text-[#665D56] mb-1">
-                        성함 또는 단체명
+                        {t.location.formName}
                       </label>
                       <input
                         type="text"
-                        placeholder="홍길동"
+                        placeholder={lang === "ko" ? "홍길동" : "Alex Kim"}
                         required
                         className="w-full rounded-xl bg-[#FAF7F2] border border-[#DDD3C6] px-3.5 py-2.5 text-xs text-[#2D2522] focus:outline-none focus:ring-1 focus:ring-[#9B4A25]"
                       />
                     </div>
                     <div>
                       <label className="block text-[11px] font-semibold text-[#665D56] mb-1">
-                        연락처
+                        {t.location.formPhone}
                       </label>
                       <input
                         type="tel"
@@ -419,7 +429,7 @@ export default function LocationPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[11px] font-semibold text-[#665D56] mb-1">
-                        방문 예정 일시
+                        {t.location.formDate}
                       </label>
                       <input
                         type="date"
@@ -429,26 +439,26 @@ export default function LocationPage() {
                     </div>
                     <div>
                       <label className="block text-[11px] font-semibold text-[#665D56] mb-1">
-                        문의 유형
+                        {t.location.formType}
                       </label>
                       <select
                         className="w-full rounded-xl bg-[#FAF7F2] border border-[#DDD3C6] px-3.5 py-2.5 text-xs text-[#2D2522] focus:outline-none focus:ring-1 focus:ring-[#9B4A25]"
                       >
-                        <option>야외 테라스 단체석 문의</option>
-                        <option>전체 공간 대관 문의</option>
-                        <option>촬영 및 케이터링 문의</option>
-                        <option>기타 문의</option>
+                        <option>{t.location.formTypeOption1}</option>
+                        <option>{t.location.formTypeOption2}</option>
+                        <option>{t.location.formTypeOption3}</option>
+                        <option>{t.location.formTypeOption4}</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-[11px] font-semibold text-[#665D56] mb-1">
-                      남기실 메시지
+                      {t.location.formMsg}
                     </label>
                     <textarea
                       rows={3}
-                      placeholder="인원수 및 요청사항을 편안하게 적어주세요"
+                      placeholder={t.location.formPlaceholder}
                       required
                       className="w-full rounded-xl bg-[#FAF7F2] border border-[#DDD3C6] px-3.5 py-2.5 text-xs text-[#2D2522] focus:outline-none focus:ring-1 focus:ring-[#9B4A25]"
                     />
@@ -461,11 +471,11 @@ export default function LocationPage() {
                     {submitted ? (
                       <>
                         <Check className="h-4 w-4" />
-                        <span>문의가 성공적으로 전달되었습니다!</span>
+                        <span>{t.location.formSuccess}</span>
                       </>
                     ) : (
                       <>
-                        <span>문의 메시지 보내기</span>
+                        <span>{t.location.formSubmit}</span>
                         <span>▷</span>
                       </>
                     )}

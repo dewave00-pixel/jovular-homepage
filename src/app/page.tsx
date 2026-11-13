@@ -9,64 +9,40 @@ import {
   ArrowRight, 
   ChevronDown 
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function Home() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   const threePieces = [
     {
       title: "The Terrace",
-      badge: "야외 테라스",
+      badge: lang === "ko" ? "야외 테라스" : "Outdoor Terrace",
       badgeColor: "bg-[#EBF0E6] text-[#486338]",
-      desc: "탁 트인 야외에서 바람과 햇살을 즐길 수 있는 조블라의 대표 테라스 공간입니다.",
+      desc: lang === "ko" 
+        ? "탁 트인 야외에서 바람과 햇살을 즐길 수 있는 조블라의 대표 테라스 공간입니다."
+        : "A signature outdoor space where you can unwind in the breeze and gentle sunlight.",
       img: "/images/terrace_02.jpg",
     },
     {
       title: "Indoor Lounge",
-      badge: "실내 라운지",
+      badge: lang === "ko" ? "실내 라운지" : "Indoor Lounge",
       badgeColor: "bg-[#F9ECE7] text-[#9E5336]",
-      desc: "붉은 벽돌과 편안한 우드톤으로 꾸며진 차분하고 아늑한 실내 좌석입니다.",
+      desc: lang === "ko"
+        ? "붉은 벽돌과 편안한 우드톤으로 꾸며진 차분하고 아늑한 실내 좌석입니다."
+        : "Warm and cozy indoor seating styled with classic brickwork and comfortable wood accents.",
       img: "/images/indoor_01.jpg",
     },
     {
       title: "Courtyard Patio",
-      badge: "안뜰 테라스",
+      badge: lang === "ko" ? "안뜰 테라스" : "Courtyard Patio",
       badgeColor: "bg-[#F2ECE3] text-[#7A6B56]",
-      desc: "골목 안쪽에 자리해 소음 없이 프라이빗하게 머물 수 있는 안뜰 공간입니다.",
+      desc: lang === "ko"
+        ? "골목 안쪽에 자리해 소음 없이 프라이빗하게 머물 수 있는 안뜰 공간입니다."
+        : "A peaceful private courtyard patio tucked away from street noise for calm conversations.",
       img: "/images/terrace_03.jpg",
-    },
-  ];
-
-  const signatureMenus = [
-    {
-      title: "너티초콜릿크림라떼",
-      subtitle: "Nutty Chocolate Cream Latte",
-      price: "₩ 8,900",
-      desc: "고소한 견과류 풍미와 진한 다크 초콜릿, 쫀득한 수제 크림의 조화",
-      tags: "Signature • Cream Coffee",
-      image: "/images/cream_01.jpeg",
-    },
-    {
-      title: "솔티카라멜크림라떼",
-      subtitle: "Salty Caramel Cream Latte",
-      price: "₩ 8,900",
-      desc: "단짠의 정석 수제 솔티 카라멜과 부드럽고 묵직한 크림이 어우러진 시그니처",
-      tags: "Signature • Salty Caramel",
-      image: "/images/cream_02.jpeg",
-    },
-    {
-      title: "애플 고르곤졸라 치즈케이크",
-      subtitle: "Apple Gorgonzola Cheesecake",
-      price: "₩ 13,900",
-      desc: "진한 고르곤졸라 치즈의 풍미에 달콤한 수제 사과 콩포트를 얹은 치즈케이크",
-      tags: "Dessert • House Special",
-      image: "/images/cake_01.png",
-    },
-    {
-      title: "딸기케이크",
-      subtitle: "Fresh Strawberry Cake",
-      price: "₩ 15,900",
-      desc: "신선한 제철 생딸기와 부드러운 시트, 풍부한 동물성 생크림의 산뜻한 조화",
-      tags: "Dessert • Seasonal Cake",
-      image: "/images/cake_02.jpeg",
     },
   ];
 
@@ -81,35 +57,35 @@ export default function Home() {
               {/* Badge */}
               <div className="inline-flex items-center gap-1.5 rounded-full bg-[#ECE4D8] px-3.5 py-1 text-[11px] font-semibold tracking-wider text-[#685E55] uppercase">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#9B4A25]" />
-                TERRACE CAFE JOVULAR
+                {t.hero.badge}
               </div>
 
               {/* Title */}
               <h1 className="mt-6 text-4xl sm:text-6xl text-[#2D2522] leading-[1.1] font-serif">
-                Cafe Jovular <br />
-                <span className="italic font-normal text-[#9B4A25]">Terrace & Coffee</span>
+                {t.hero.title1} <br />
+                <span className="italic font-normal text-[#9B4A25]">{t.hero.title2}</span>
               </h1>
 
               {/* Sub description */}
               <p className="mt-6 text-base sm:text-lg text-[#665D56] leading-relaxed max-w-md">
-                홍대입구역 8번 출구 도보 2분, 어울마당로 골목 안쪽에 위치한 테라스 카페 조블라입니다.
+                {t.hero.desc}
               </p>
 
               {/* Feature icons */}
               <div className="mt-8 flex flex-wrap items-center gap-4 text-xs font-medium text-[#61564E]">
                 <div className="flex items-center gap-1.5">
                   <Sun className="h-4 w-4 text-[#C26B38]" />
-                  <span>Outdoor Terrace</span>
+                  <span>{t.hero.terrace}</span>
                 </div>
                 <span className="text-[#C9BFB5]">•</span>
                 <div className="flex items-center gap-1.5">
                   <Sprout className="h-4 w-4 text-[#C26B38]" />
-                  <span>Indoor Lounge</span>
+                  <span>{t.hero.lounge}</span>
                 </div>
                 <span className="text-[#C9BFB5]">•</span>
                 <div className="flex items-center gap-1.5">
                   <Coffee className="h-4 w-4 text-[#C26B38]" />
-                  <span>Coffee & Dessert</span>
+                  <span>{t.hero.coffee}</span>
                 </div>
               </div>
 
@@ -119,14 +95,14 @@ export default function Home() {
                   href="#menu"
                   className="inline-flex items-center gap-2 rounded-full bg-[#9B4A25] px-6 py-3 text-sm font-medium text-white hover:bg-[#853C1B] transition-colors shadow-sm"
                 >
-                  메뉴 보기
+                  {lang === "ko" ? "메뉴 보기" : "View Menu"}
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <Link
                   href="/location"
                   className="inline-flex items-center gap-2 rounded-full border border-[#D5C9BC] bg-[#EFE8DF]/70 px-6 py-3 text-sm font-medium text-[#4D423B] hover:bg-[#E8DFD3] transition-colors"
                 >
-                  오시는 길
+                  {t.hero.viewLocation}
                   <ChevronDown className="h-4 w-4" />
                 </Link>
               </div>
@@ -165,7 +141,7 @@ export default function Home() {
                     OPEN EVERYDAY
                   </div>
                   <p className="mt-1 text-[11px] leading-tight text-[#665D56]">
-                    매일 09:00 – 24:00 (연중무휴)
+                    {t.hero.statusSub}
                   </p>
                 </div>
               </div>
@@ -181,14 +157,14 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
             <div>
               <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
-                SPACE & SEATS
+                {t.space.badge}
               </span>
               <h2 className="mt-2 text-3xl font-serif font-bold text-[#2D2522]">
-                조블라 공간 안내
+                {t.space.title}
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-[#736860] max-w-md leading-relaxed">
-              도심 속 한적한 야외 테라스와 아늑한 실내 좌석이 준비되어 있습니다.
+              {t.space.desc1}
             </p>
           </div>
 
@@ -229,19 +205,19 @@ export default function Home() {
           {/* Title Area */}
           <div className="text-center max-w-xl mx-auto mb-14">
             <span className="text-xs font-semibold tracking-widest text-[#9B4A25] uppercase">
-              SIGNATURE MENU
+              {t.menu.badge}
             </span>
             <h2 className="mt-2 text-3xl sm:text-4xl font-serif font-normal text-[#2D2522]">
-              Signature Menu
+              {t.menu.title}
             </h2>
             <p className="mt-3 text-xs sm:text-sm text-[#736860]">
-              조블라만의 시그니처 크림라떼와 직접 준비하는 수제 디저트
+              {t.menu.desc}
             </p>
           </div>
 
           {/* Menu 2x2 Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {signatureMenus.map((item, idx) => (
+            {t.menu.items.map((item, idx) => (
               <div
                 key={idx}
                 className="rounded-2xl bg-white overflow-hidden border border-[#ECE5DC] shadow-sm flex flex-col justify-between hover:border-[#D5C9BC] hover:shadow-md transition-all group"
@@ -297,10 +273,10 @@ export default function Home() {
                 OPENING HOURS
               </div>
               <h2 className="mt-3 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                매일 오전 9시부터 밤 12시까지 열려있습니다
+                {t.banner.title}
               </h2>
               <p className="mt-3 text-xs sm:text-sm text-[#665D56] leading-relaxed">
-                햇살 좋은 낮 시간의 야외 테라스부터 밤의 아늑한 무드까지, 언제든 편하게 찾아와 주세요.
+                {t.banner.desc}
               </p>
             </div>
 
@@ -308,15 +284,15 @@ export default function Home() {
               <div className="flex items-center gap-2 rounded-xl bg-white/70 px-4 py-2.5 text-xs font-medium text-[#5E534C] border border-white/60">
                 <Sun className="h-4 w-4 text-[#9B4A25]" />
                 <div className="leading-tight">
-                  <span className="block font-semibold text-[#2D2522]">Terrace & Indoor</span>
-                  <span className="text-[10px] text-[#8C8075]">홍대입구역 8번 출구 도보 2분</span>
+                  <span className="block font-semibold text-[#2D2522]">{t.banner.terraceInfo}</span>
+                  <span className="text-[10px] text-[#8C8075]">{t.banner.stationInfo}</span>
                 </div>
               </div>
               <Link
                 href="/location"
                 className="rounded-xl bg-[#9B4A25] px-6 py-3 text-xs font-semibold text-white tracking-wide hover:bg-[#853C1B] transition-colors shadow-sm flex items-center gap-1.5"
               >
-                매장 위치 보기
+                {t.banner.viewBtn}
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

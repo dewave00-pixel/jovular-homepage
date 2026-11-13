@@ -1,6 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function Footer() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   return (
     <footer className="border-t border-[#EAE3D9] pt-14 pb-12 text-[#736860] mt-auto">
       <div className="mx-auto max-w-6xl px-6">
@@ -10,10 +17,10 @@ export default function Footer() {
               조블라 (Cafe Jovular) <span className="text-[#B3A79C]">•</span> Terrace & Coffee
             </p>
             <p className="mt-1 text-xs text-[#8C8075]">
-              Mon - Sun: 09:00 - 24:00 (연중무휴)
+              {t.footer.hours}
             </p>
             <p className="mt-0.5 text-xs text-[#8C8075]">
-              서울 마포구 어울마당로 136-10 1층 (홍대입구역 8번 출구 도보 2분)
+              {t.footer.address}
             </p>
             <div className="mt-1.5 flex items-center gap-3 text-xs text-[#736860]">
               <a href="tel:050713559243" className="hover:text-[#9B4A25] transition-colors">
@@ -33,7 +40,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-6 text-xs font-medium text-[#5E534C]">
             <Link href="/location" className="hover:text-[#9B4A25] transition-colors">
-              매장 위치 보기
+              {t.footer.viewLocation}
             </Link>
           </div>
         </div>

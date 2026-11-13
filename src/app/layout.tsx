@@ -15,6 +15,7 @@ const playfair = Playfair_Display({
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "조블라 | Cafe Jovular - 테라스 카페",
@@ -32,9 +33,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${playfair.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col font-sans bg-[#FAF7F2] text-[#2D2522]">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

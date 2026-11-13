@@ -2,18 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { User, Menu, X } from "lucide-react";
+import { User, Menu, X, Globe } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { lang, toggleLang, setLang } = useLanguage();
+  const t = translations[lang];
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    // { name: "About", href: "/about" }, // 임시 비활성화 (추후 재오픈)
-    // { name: "Blog", href: "/blog" },   // 임시 비활성화 (추후 재오픈)
-    { name: "Location", href: "/location" },
+    { name: t.nav.home, href: "/" },
+    { name: t.nav.location, href: "/location" },
   ];
 
   return (
@@ -55,17 +57,41 @@ export default function Header() {
         </nav>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          {/* Language Switcher Pill */}
+          <div className="flex items-center rounded-full border border-[#DDD3C6] bg-white/90 p-0.5 shadow-sm text-[11px] font-semibold">
+            <button
+              onClick={() => setLang("ko")}
+              className={`px-2 py-0.5 rounded-full transition-all ${
+                lang === "ko"
+                  ? "bg-[#9B4A25] text-white shadow-xs"
+                  : "text-[#736860] hover:text-[#2D2522]"
+              }`}
+            >
+              KO
+            </button>
+            <button
+              onClick={() => setLang("en")}
+              className={`px-2 py-0.5 rounded-full transition-all ${
+                lang === "en"
+                  ? "bg-[#9B4A25] text-white shadow-xs"
+                  : "text-[#736860] hover:text-[#2D2522]"
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
           <Link
             href="/location"
-            className="rounded-full bg-[#9B4A25] px-5 py-2 text-xs font-semibold text-white tracking-wide hover:bg-[#853C1B] transition-colors shadow-sm"
+            className="rounded-full bg-[#9B4A25] px-4 sm:px-5 py-2 text-xs font-semibold text-white tracking-wide hover:bg-[#853C1B] transition-colors shadow-sm whitespace-nowrap"
           >
-            Reserve Patio
+            {t.nav.reserve}
           </Link>
           <Link
             href="/location"
             aria-label="User profile"
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-[#9B4A25] text-white hover:bg-[#853C1B] transition-colors shadow-sm"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-[#9B4A25] text-white hover:bg-[#853C1B] transition-colors shadow-sm shrink-0"
           >
             <User className="h-4 w-4" />
           </Link>
