@@ -14,8 +14,8 @@ export default function Header() {
   const t = translations[lang];
 
   const navLinks = [
-    { name: t.nav.home, href: "/" },
-    { name: t.nav.location, href: "/location" },
+    { name: "Home", href: "/" },
+    { name: "Location", href: "/location" },
   ];
 
   return (
@@ -82,12 +82,6 @@ export default function Header() {
             </button>
           </div>
 
-          <Link
-            href="/location"
-            className="rounded-full bg-[#9B4A25] px-4 sm:px-5 py-2 text-xs font-semibold text-white tracking-wide hover:bg-[#853C1B] transition-colors shadow-sm whitespace-nowrap"
-          >
-            {t.nav.reserve}
-          </Link>
           <Link
             href="/location"
             aria-label="User profile"
