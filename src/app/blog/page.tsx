@@ -140,10 +140,8 @@ export default function BlogPage() {
       {!loading && featuredArticle && (
         <section className="pb-16">
           <div className="mx-auto max-w-6xl px-6">
-            <a
-              href={featuredArticle.link || "#"}
-              target={featuredArticle.link && featuredArticle.link !== "#" ? "_blank" : undefined}
-              rel="noopener noreferrer"
+            <Link
+              href={`/blog/${featuredArticle.id}`}
               className="block group rounded-3xl bg-white border border-[#ECE5DC] shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-12 hover:shadow-md transition-shadow"
             >
               <div className="md:col-span-7 relative min-h-[300px] sm:min-h-[380px] bg-[#EFE8DF] overflow-hidden">
@@ -195,7 +193,7 @@ export default function BlogPage() {
                   </span>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
         </section>
       )}
@@ -224,11 +222,9 @@ export default function BlogPage() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {filteredArticles.map((item) => (
-                  <a
+                  <Link
                     key={item.id}
-                    href={item.link || "#"}
-                    target={item.link && item.link !== "#" ? "_blank" : undefined}
-                    rel="noopener noreferrer"
+                    href={`/blog/${item.id}`}
                     className="group rounded-2xl bg-white p-5 border border-[#ECE5DC] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                   >
                     <div>
@@ -261,7 +257,7 @@ export default function BlogPage() {
                       <span>{lang === "ko" ? "더 읽어보기" : "Read More"}</span>
                       <ArrowUpRight className="h-3.5 w-3.5" />
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             )}

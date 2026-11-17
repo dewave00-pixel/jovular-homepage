@@ -9,3 +9,94 @@ body {
   background-color: var(--background);
   color: var(--foreground);
 }
+
+/* WordPress Editorial Content Styling */
+.wp-content {
+  color: #4D423B;
+  font-size: 0.975rem;
+  line-height: 1.85;
+}
+
+.wp-content > * + * {
+  margin-top: 1.25rem;
+}
+
+.wp-content h1,
+.wp-content h2,
+.wp-content h3,
+.wp-content h4 {
+  color: #2D2522;
+  font-family: var(--font-serif), serif;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.wp-content h2 {
+  font-size: 1.5rem;
+}
+
+.wp-content h3 {
+  font-size: 1.25rem;
+}
+
+.wp-content a {
+  color: #9B4A25;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.wp-content a:hover {
+  color: #7D391A;
+}
+
+.wp-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  margin: 1.75rem 0;
+  border: 1px solid #ECE5DC;
+}
+
+.wp-content figure {
+  margin: 1.75rem 0;
+}
+
+.wp-content figcaption {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #8C8075;
+  margin-top: 0.5rem;
+}
+
+.wp-content ul,
+.wp-content ol {
+  padding-left: 1.5rem;
+}
+
+.wp-content ul {
+  list-style-type: disc;
+}
+
+.wp-content ol {
+  list-style-type: decimal;
+}
+
+.wp-content li + li {
+  margin-top: 0.4rem;
+}
+
+.wp-content blockquote {
+  border-left: 3px solid #9B4A25;
+  background-color: #FAF5EE;
+  padding: 1rem 1.25rem;
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: #5E534C;
+  font-style: italic;
+}
+
+.wp-content hr {
+  border-color: #EAE3D9;
+  margin: 2rem 0;
+}
