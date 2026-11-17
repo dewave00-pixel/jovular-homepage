@@ -1,12 +1,3 @@
-import { redirect } from "next/navigation";
-
-export default function BlogPage() {
-  // 임시 비활성화: Blog 페이지 hide 처리 (추후 재오픈)
-  redirect("/");
-}
-
-/*
-// [추후 재오픈 시 복원 코드]
 "use client";
 
 import { useState, useEffect } from "react";
@@ -22,8 +13,10 @@ import {
   BookOpen
 } from "lucide-react";
 import { getWordPressPosts, type WordPressPost } from "@/lib/wordpress";
+import { useLanguage } from "@/context/LanguageContext";
 
-export function BlogPageContent() {
+export default function BlogPage() {
+  const { lang } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("전체보기 (All)");
   const [wpPosts, setWpPosts] = useState<WordPressPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,14 +39,15 @@ export function BlogPageContent() {
     new Set(wpPosts.map((wp) => wp.category).filter(Boolean))
   );
   const categories = [
-    "전체보기 (All)",
+    lang === "ko" ? "전체보기 (All)" : "All Stories",
     ...(dynamicCategories.length > 0 ? dynamicCategories : []),
   ];
 
   const featuredArticle = wpPosts.length > 0 ? wpPosts[0] : null;
   const gridArticles = wpPosts.length > 1 ? wpPosts.slice(1) : [];
 
-  const filteredArticles = activeCategory === "전체보기 (All)"
+  const isAll = activeCategory.includes("All") || activeCategory === "전체보기 (All)";
+  const filteredArticles = isAll
     ? gridArticles
     : gridArticles.filter(a => a.category.toLowerCase().includes(activeCategory.toLowerCase().replace(/[^a-zA-Z가-힣0-9]/g, '')));
 
@@ -71,7 +65,9 @@ export function BlogPageContent() {
                 Jovular Journal
               </h1>
               <p className="mt-3 text-xs sm:text-sm text-[#736860]">
-                카페 조블라의 계절 이야기, 새로운 원두와 디저트 소식, 테라스의 일상
+                {lang === "ko" 
+                  ? "카페 조블라의 계절 이야기, 새로운 원두와 디저트 소식, 테라스의 일상" 
+                  : "Seasonal stories, specialty coffee notes, fresh desserts, and terrace moments from Cafe Jovular"}
               </p>
             </div>
 
@@ -79,10 +75,10 @@ export function BlogPageContent() {
               <Sun className="h-5 w-5 text-[#C26B38]" />
               <div>
                 <p className="text-[10px] font-bold text-[#8C8075] uppercase tracking-wider">
-                  TERRACE SUNLIGHT INDEX
+                  TERRACE SUNLIGHT
                 </p>
                 <p className="text-xs font-semibold text-[#2D2522] mt-0.5">
-                  24°C • Golden Hour 17:40
+                  Open 09:00 - 24:00
                 </p>
               </div>
             </div>
@@ -114,7 +110,7 @@ export function BlogPageContent() {
             <div className="rounded-3xl bg-white border border-[#ECE5DC] p-12 text-center shadow-sm">
               <Loader2 className="h-8 w-8 text-[#9B4A25] animate-spin mx-auto mb-3" />
               <p className="text-xs font-medium text-[#736860]">
-                조블라 저널 소식을 불러오는 중입니다...
+                {lang === "ko" ? "조블라 저널 소식을 불러오는 중입니다..." : "Loading stories from Jovular Journal..."}
               </p>
             </div>
           </div>
@@ -129,10 +125,12 @@ export function BlogPageContent() {
                 <BookOpen className="h-6 w-6" />
               </div>
               <h3 className="text-lg font-serif font-bold text-[#2D2522]">
-                등록된 포스트가 없습니다
+                {lang === "ko" ? "등록된 포스트가 없습니다" : "No posts found"}
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-[#736860]">
-                새로운 테라스 이야기와 카페 소식이 곧 업데이트될 예정입니다.
+                {lang === "ko" 
+                  ? "새로운 테라스 이야기와 카페 소식이 곧 업데이트될 예정입니다." 
+                  : "New terrace stories and seasonal updates will be published soon."}
               </p>
             </div>
           </div>
@@ -170,13 +168,13 @@ export function BlogPageContent() {
                     <Calendar className="h-3.5 w-3.5 text-[#9B4A25]" />
                     <span>{featuredArticle.date}</span>
                     <span>•</span>
-                    <span>5 min read</span>
+                    <span>Jovular Story</span>
                   </div>
                   <h2 className="mt-4 text-xl sm:text-2xl font-serif font-bold text-[#2D2522] leading-snug group-hover:text-[#9B4A25] transition-colors">
                     {featuredArticle.title}
                   </h2>
                   <p className="mt-4 text-xs sm:text-sm text-[#736860] leading-relaxed line-clamp-4">
-                    {featuredArticle.excerpt || "조블라의 새로운 소식입니다."}
+                    {featuredArticle.excerpt || (lang === "ko" ? "조블라의 새로운 소식입니다." : "Fresh updates from Cafe Jovular.")}
                   </p>
                 </div>
 
@@ -192,7 +190,7 @@ export function BlogPageContent() {
                   </div>
 
                   <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2D2522] group-hover:text-[#9B4A25] transition-colors">
-                    Read Journal
+                    {lang === "ko" ? "읽어보기" : "Read Story"}
                     <ArrowRight className="h-3.5 w-3.5" />
                   </span>
                 </div>
@@ -208,20 +206,20 @@ export function BlogPageContent() {
             <div className="flex items-baseline justify-between mb-8">
               <div className="flex items-baseline gap-2">
                 <h2 className="text-lg font-serif font-bold text-[#2D2522]">
-                  최신 기록 & 테라스 노트
+                  {lang === "ko" ? "최신 기록 & 테라스 노트" : "Recent Notes & Archive"}
                 </h2>
                 <span className="text-[11px] font-mono tracking-widest text-[#8C8075] uppercase">
                   ARCHIVE
                 </span>
               </div>
               <span className="text-xs text-[#8C8075]">
-                총 {filteredArticles.length}편의 에세이
+                {lang === "ko" ? `총 ${filteredArticles.length}편의 이야기` : `${filteredArticles.length} Stories`}
               </span>
             </div>
 
             {filteredArticles.length === 0 ? (
               <div className="py-12 text-center text-xs text-[#736860]">
-                해당 카테고리에 등록된 포스트가 없습니다.
+                {lang === "ko" ? "해당 카테고리에 등록된 포스트가 없습니다." : "No posts found in this category."}
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -255,12 +253,12 @@ export function BlogPageContent() {
                       </h3>
 
                       <p className="mt-2 text-xs leading-relaxed text-[#736860] line-clamp-2">
-                        {item.excerpt || "조블라의 새로운 소식입니다."}
+                        {item.excerpt || (lang === "ko" ? "조블라의 새로운 소식입니다." : "Fresh updates from Cafe Jovular.")}
                       </p>
                     </div>
 
                     <div className="mt-4 pt-3 border-t border-[#F2ECE3] flex items-center justify-between text-xs text-[#8C5338] font-medium group-hover:text-[#68331E]">
-                      <span>더 읽어보기</span>
+                      <span>{lang === "ko" ? "더 읽어보기" : "Read More"}</span>
                       <ArrowUpRight className="h-3.5 w-3.5" />
                     </div>
                   </a>
@@ -271,6 +269,7 @@ export function BlogPageContent() {
         </section>
       )}
 
+      {/* Quote Banner */}
       <section className="py-14">
         <div className="mx-auto max-w-4xl px-6">
           <div className="rounded-3xl bg-[#F4EFEA] border border-[#DDD3C6] p-10 text-center">
@@ -287,6 +286,7 @@ export function BlogPageContent() {
         </div>
       </section>
 
+      {/* Instagram / Newsletter Section */}
       <section className="pb-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="rounded-3xl bg-[#ECE4D8]/80 border border-[#DDD3C6] p-8 sm:p-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
@@ -296,40 +296,24 @@ export function BlogPageContent() {
                 DAILY COURTYARD MOMENTS
               </div>
               <h2 className="mt-3 text-2xl sm:text-3xl font-serif font-bold text-[#2D2522]">
-                @cafe_jovular 에서 실시간 일상을 만나보세요
+                @jovular_cafe 에서 실시간 일상을 만나보세요
               </h2>
               <p className="mt-3 text-xs sm:text-sm text-[#665D56] leading-relaxed">
-                오늘의 날씨, 테라스 개방 여부, 갓 구운 디저트 라인업 및 이벤트 소식을 가장 먼저 인스타그램과 조블라 뉴스레터로 전해드립니다.
+                오늘의 날씨, 테라스 개방 여부, 갓 구운 디저트 라인업 및 이벤트 소식을 인스타그램(@jovular_cafe)에서 가장 먼저 전해드립니다.
               </p>
             </div>
 
             <div className="w-full lg:w-auto shrink-0 flex flex-col gap-2">
-              <form onSubmit={(e) => { e.preventDefault(); alert("뉴스레터 구독이 신청되었습니다."); }} className="flex flex-col sm:flex-row gap-2">
-                <div className="relative">
-                  <input
-                    type="email"
-                    placeholder="이메일 주소를 입력해 주세요"
-                    required
-                    className="w-full sm:w-72 rounded-xl bg-white border border-[#D5C9BC] px-4 py-3 text-xs text-[#2D2522] placeholder-[#A09388] focus:outline-none focus:ring-1 focus:ring-[#9B4A25]"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="rounded-xl bg-[#9B4A25] px-6 py-3 text-xs font-semibold text-white hover:bg-[#853C1B] transition-colors shadow-sm flex items-center justify-center gap-1.5 shrink-0"
-                >
-                  레터구독
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </button>
-              </form>
-
-              <div className="flex items-center gap-3 text-[11px] text-[#8C8075] mt-1">
-                <span className="flex items-center gap-1">
-                  <Camera className="h-3 w-3 text-[#9B4A25]" />
-                  Instagram 팔로우
-                </span>
-                <span>•</span>
-                <span>매주 목요일 조블라 소식지 발송</span>
-              </div>
+              <a
+                href="https://www.instagram.com/jovular_cafe"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl bg-[#9B4A25] px-6 py-3.5 text-xs font-semibold text-white hover:bg-[#853C1B] transition-colors shadow-sm flex items-center justify-center gap-2"
+              >
+                <Camera className="h-4 w-4" />
+                <span>Instagram @jovular_cafe 바로가기</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
             </div>
           </div>
         </div>
@@ -337,4 +321,3 @@ export function BlogPageContent() {
     </>
   );
 }
-*/
