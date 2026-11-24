@@ -222,7 +222,7 @@ export default function LocationPage() {
                         href="tel:050713559243" 
                         className="font-semibold text-[#2D2522] hover:text-[#9B4A25] transition-colors"
                       >
-                        0507-1355-9243
+                        0507 1355 9243
                       </a>
                     </div>
                     <div className="flex items-center justify-between">

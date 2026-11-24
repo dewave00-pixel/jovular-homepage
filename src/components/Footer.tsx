@@ -24,7 +24,7 @@ export default function Footer() {
             </p>
             <div className="mt-1.5 flex items-center gap-3 text-xs text-[#736860]">
               <a href="tel:050713559243" className="hover:text-[#9B4A25] transition-colors">
-                Tel: 0507-1355-9243
+                Tel: 0507 1355 9243
               </a>
               <span>•</span>
               <a 
