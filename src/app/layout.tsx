@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -34,7 +35,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans bg-[#FAF7F2] text-[#2D2522]">
         <LanguageProvider>
-          <Header />
+          <Suspense fallback={<div className="h-[73px] border-b border-[#EAE3D9]/60 bg-[#FAF7F2]/90" />}>
+            <Header />
+          </Suspense>
           <main className="flex-1">{children}</main>
           <Footer />
         </LanguageProvider>

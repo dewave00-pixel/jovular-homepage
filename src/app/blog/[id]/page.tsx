@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import {
@@ -14,7 +14,7 @@ import {
 import { getWordPressPostById, type WordPressPost } from "@/lib/wordpress";
 import { useLanguage } from "@/context/LanguageContext";
 
-export default function BlogPostDetailPage() {
+function BlogPostDetailContent() {
   const params = useParams();
   const id = Array.isArray(params?.id) ? params.id[0] : params?.id;
   const { lang } = useLanguage();
@@ -178,5 +178,23 @@ export default function BlogPostDetailPage() {
         </div>
       </div>
     </article>
+  );
+}
+
+export default function BlogPostDetailPage() {
+  return (
+    <Suspense
+      fallback={
+        <section className="py-24">
+          <div className="mx-auto max-w-3xl px-6">
+            <div className="rounded-3xl bg-white border border-[#ECE5DC] p-14 text-center shadow-sm">
+              <Loader2 className="h-8 w-8 text-[#9B4A25] animate-spin mx-auto mb-3" />
+            </div>
+          </div>
+        </section>
+      }
+    >
+      <BlogPostDetailContent />
+    </Suspense>
   );
 }
